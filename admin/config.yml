@@ -46,18 +46,53 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - label: "Tên dự án"
-        name: "title"
+      - label: "Tiêu đề tiếng Việt"
+        name: "title_vi"
         widget: "string"
 
-      - label: "Lĩnh vực"
-        name: "category"
+      - label: "Title in English"
+        name: "title_en"
         widget: "string"
-        required: false
 
-      - label: "Mô tả dự án"
-        name: "description"
-        widget: "text"
+      - label: "한국어 제목"
+        name: "title_ko"
+        widget: "string"
+
+      - label: "Mô tả tiếng Việt"
+        name: "subtitle_vi"
+        widget: "string"
+
+      - label: "Description in English"
+        name: "subtitle_en"
+        widget: "string"
+
+      - label: "한국어 설명"
+        name: "subtitle_ko"
+        widget: "string"
+
+      - label: "Chi tiết tiếng Việt"
+        name: "details_vi"
+        widget: "list"
+        field:
+          label: "Nội dung"
+          name: "item"
+          widget: "string"
+
+      - label: "Details in English"
+        name: "details_en"
+        widget: "list"
+        field:
+          label: "Content"
+          name: "item"
+          widget: "string"
+
+      - label: "한국어 상세 내용"
+        name: "details_ko"
+        widget: "list"
+        field:
+          label: "내용"
+          name: "item"
+          widget: "string"
 
       - label: "Ảnh dự án"
         name: "thumbnail"
@@ -81,14 +116,38 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - label: "Tên nhóm kỹ năng"
-        name: "title"
+      - label: "Tên nhóm tiếng Việt"
+        name: "title_vi"
         widget: "string"
 
-      - label: "Danh sách kỹ năng"
-        name: "items"
+      - label: "Group title in English"
+        name: "title_en"
+        widget: "string"
+
+      - label: "한국어 그룹명"
+        name: "title_ko"
+        widget: "string"
+
+      - label: "Kỹ năng tiếng Việt"
+        name: "items_vi"
         widget: "list"
         field:
-          label: "Tên kỹ năng"
-          name: "skill"
+          label: "Kỹ năng"
+          name: "item"
+          widget: "string"
+
+      - label: "Skills in English"
+        name: "items_en"
+        widget: "list"
+        field:
+          label: "Skill"
+          name: "item"
+          widget: "string"
+
+      - label: "한국어 역량"
+        name: "items_ko"
+        widget: "list"
+        field:
+          label: "역량"
+          name: "item"
           widget: "string"
