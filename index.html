@@ -143,20 +143,6 @@ section{
 .cols{display:grid;grid-template-columns:1fr 2fr;gap:6vw}
 h2{font-size:clamp(34px,4.5vw,56px)}
 .cols p{margin:0 0 16px;max-width:60ch}
-.education-heading{
-  margin-top:28px;
-  padding:20px 24px;
-  border-left:4px solid var(--green);
-  background:var(--grey);
-}
-.education-heading h3{
-  color:var(--green);
-  font-family:Inter,system-ui,sans-serif;
-  font-size:18px;
-  font-weight:600;
-  line-height:1.5;
-}
-.education-heading p{margin:8px 0 0;font-size:15px}
 .sk2{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -284,6 +270,29 @@ footer{
   margin-bottom:8px!important;
 }
 .blog-empty{margin-top:30px;opacity:.7}
+/* Hoạt động & Dự án: bài viết dạng chữ, không dùng ảnh minh họa */
+.text-article-card{
+  display:block;
+  min-height:190px;
+  padding:26px!important;
+  text-align:left;
+  color:var(--ink);
+  background:var(--grey);
+  border:1px solid var(--line);
+  cursor:pointer;
+  transition:transform .3s, border-color .3s;
+}
+.text-article-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--green);
+}
+.text-article-card .b{padding:0!important}
+.text-article-card h3{margin:8px 0 12px}
+.text-article-card .article-read{
+  color:var(--green);
+  font-size:13px;
+  margin-top:22px;
+}
 .blog-content{
   margin-top:28px;
   line-height:1.8;
@@ -343,7 +352,7 @@ const LINKS = {
 
 const CONTENT = {
   vi: {
-    nav: ["Trang chủ","Giới thiệu","Học vấn","Hoạt động","Dự án","Blog","Liên hệ"],
+    nav: ["Trang chủ","Giới thiệu","Kỹ năng","Hoạt động","Dự án","Blog","Liên hệ"],
     hello: "Xin chào, mình là",
     role: "Sinh viên Hàn Quốc học | Kinh tế, Chính trị & Ngoại giao Hàn Quốc",
     intro: [
@@ -357,19 +366,17 @@ const CONTENT = {
       "Mình là sinh viên năm cuối ngành Hàn Quốc học tại Trường Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM, chuyên ngành Kinh tế, Chính trị và Ngoại giao Hàn Quốc.",
       "Mình quan tâm đến vai trò IT Comtor Hàn–Việt, lĩnh vực Logistics và định hướng phát triển sự nghiệp tại các doanh nghiệp Hàn Quốc."
     ],
-    skillsT: "Học vấn",
-    university: "Trường Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM",
-    major: "Ngành Hàn Quốc học – Chuyên ngành Kinh tế, Chính trị và Ngoại giao",
+    skillsT: "Kỹ năng",
     langT: "Ngôn ngữ",
     techT: "Chuyên môn & Nghiệp vụ",
     langs: [
       ["Tiếng Hàn","TOPIK cấp 4"],
       ["Tiếng Việt","Bản ngữ"],
-      ["Tiếng Anh","B2 – In Progress"]
+      ["Tiếng Anh","[Điền trình độ của bạn]"]
     ],
     groups: [
       {
-        h:"Kiến thức IT",
+        h:"Kiến thức IT & Kinh doanh",
         i:[
           "TOPCIT cấp 2",
           "Kiến thức cơ bản về IT và thương mại quốc tế",
@@ -380,58 +387,42 @@ const CONTENT = {
         h:"Hành chính văn phòng & Tài liệu",
         i:[
           "Microsoft Word, Excel, PowerPoint (MOS)",
-          "Soạn thảo tài liệu kinh doanh",
+          "Soạn thảo và định dạng văn bản kinh doanh",
           "Tổng hợp thông tin và lập báo cáo",
           "Biên bản họp và tài liệu hành chính",
           "Sắp xếp, lưu trữ và quản lý hồ sơ"
         ]
       },
       {
+        h:"Ngôn ngữ & Giao tiếp",
+        i:[
+          "Biên phiên dịch",
+          "Giao tiếp Hàn–Việt"
+        ]
+      },
+      {
         h:"Phát triển web với AI hỗ trợ",
         i:[
+          "Vibe Coding: sử dụng Claude và các công cụ AI để tạo, tùy chỉnh và hoàn thiện giao diện website thông qua câu lệnh bằng ngôn ngữ tự nhiên.",
           "Hiểu biết cơ bản về cấu trúc website và frontend qua thực hành xây dựng portfolio."
         ]
       }
     ],
-    expT: "Hoạt động",
+    expT: "Kinh nghiệm & Hoạt động",
     ph: "[Thêm mô tả tại đây]",
     img: "Ảnh minh họa",
-    acts: [
-      "Xuân Tình Nguyện 2026",
-      "“Em mơ …” [điền tên đầy đủ]",
-      "Thu San Sẻ – Trăng Đong Đầy",
-      "Hoạt động Câu lạc bộ Ngôn ngữ ký hiệu",
-      "Dự án thực tập Nhà Nhiều Lá"
-    ],
-    projT: "Dự án",
+  
+    projT: "Dự án & Đào tạo",
     more: "Xem chi tiết",
-    projs: [
-      {
-        t:"KITS 2026",
-        s:"Đào tạo Phiên dịch IT Hàn–Việt",
-        pts:[
-          "Học kiến thức nền tảng về IT và thuật ngữ IT Hàn–Việt.",
-          "Thực hành biên phiên dịch trong bối cảnh liên quan đến IT.",
-          "Rèn luyện kỹ năng giao tiếp kinh doanh, soạn thảo tài liệu và xử lý công việc liên quan đến cuộc họp.",
-          "Đạt chứng chỉ TOPCIT cấp 2."
-        ]
-      },
-      {
-        t:"KITA 2026",
-        s:"Tiếng Hàn thực hành trong Ngoại thương",
-        pts:[
-          "Học thuật ngữ tiếng Hàn thực tế trong lĩnh vực thương mại quốc tế.",
-          "Rèn luyện kỹ năng viết thư tín thương mại và chứng từ ngoại thương.",
-          "Tìm hiểu quy trình xuất nhập khẩu cơ bản và hoạt động thương mại.",
-          "Thực hành biên phiên dịch trong bối cảnh kinh doanh và thương mại."
-        ]
-      }
-    ],
+  
     dDesc: "Nội dung",
     close: "Đóng",
     blogT: "Góc nhỏ",
-    blogEmpty: "Chưa có nội dung nào.",
+    blogEmpty: "Chưa có bài viết nào.",
     blogBack: "Quay lại",
+    activityEmpty: "Chưa có hoạt động nào.",
+    projectEmpty: "Chưa có dự án nào.",
+    articleMore: "Đọc chi tiết",
     contactT: "Liên hệ",
     cs:[
       ["Email","mhien0795work@gmail.com",LINKS.email,0],
@@ -441,29 +432,27 @@ const CONTENT = {
   },
 
   en: {
-    nav: ["Home","About","Education","Activities","Projects","Blog","Contact"],
+    nav: ["Home","About","Skills","Activities","Projects","Blog","Contact"],
     hello: "Hello, I’m",
     role: "Korean Studies Student | Korean Economics, Politics & Diplomacy",
     intro: [
       "I am a senior Korean Studies student at the University of Social Sciences and Humanities, VNU-HCM, specializing in Korean Economics, Politics and Diplomacy.",
       "I am interested in the role of a Korean–Vietnamese IT Comtor, the logistics field, and building a career in Korean companies."
     ],
-    b1: "View Details",
+    b1: "View My Projects",
     b2: "Contact Me",
     aboutT: "About Me",
     about: [
       "I am a senior Korean Studies student at the University of Social Sciences and Humanities, VNU-HCM, specializing in Korean Economics, Politics and Diplomacy.",
       "I am interested in the role of a Korean–Vietnamese IT Comtor, the logistics field, and building a career in Korean companies."
     ],
-    skillsT: "Education",
-    university: "University of Social Sciences and Humanities, VNU-HCM",
-    major: "Korean Studies – Economics, Politics and Diplomacy",
-    langT: "Languages",
+    skillsT: "Skills",
+    langT: "Language",
     techT: "Technical & Professional",
     langs: [
       ["Korean","TOPIK Level 4"],
       ["Vietnamese","Native"],
-      ["English","B2 – In Progress"]
+      ["English","[Add your level]"]
     ],
     groups: [
       {
@@ -499,45 +488,21 @@ const CONTENT = {
         ]
       }
     ],
-    expT: "Activities",
+    expT: "Experience & Activities",
     ph: "[Add description here]",
     img: "Image placeholder",
-    acts: [
-      "Xuân Tình Nguyện 2026",
-      "“Em mơ …” [add full title]",
-      "Thu San Sẻ – Trăng Đong Đầy",
-      "Sign Language Club activities",
-      "Nhà Nhiều Lá Intern Project"
-    ],
-    projT: "Projects",
+    
+    projT: "Projects & Training",
     more: "View details",
-    projs: [
-      {
-        t:"KITS 2026",
-        s:"Korean–Vietnamese IT Interpreter Training",
-        pts:[
-          "Learned foundational IT knowledge and Korean–Vietnamese IT terminology.",
-          "Practiced translation and interpretation in IT-related contexts.",
-          "Developed practical skills in business communication, documentation, and meeting-related tasks.",
-          "Achieved TOPCIT Level 2."
-        ]
-      },
-      {
-        t:"KITA 2026",
-        s:"Practical Korean for Foreign Trade",
-        pts:[
-          "Learned practical Korean terminology related to international trade.",
-          "Developed skills in business correspondence and trade document writing.",
-          "Studied fundamental import–export procedures and trade operations.",
-          "Practiced translation and interpretation in business and trade contexts."
-        ]
-      }
-    ],
+
     dDesc: "Overview",
     close: "Close",
-    blogT: "Little Corner",
-    blogEmpty: "No content yet.",
-    blogBack: "Back to Blog",
+    blogT: "Blog",
+    blogEmpty: "No posts yet.",
+    blogBack: "Back",
+    activityEmpty: "No activities yet.",
+    projectEmpty: "No projects yet.",
+    articleMore: "Read more",
     contactT: "Contact",
     cs:[
       ["Email","mhien0795work@gmail.com",LINKS.email,0],
@@ -547,29 +512,27 @@ const CONTENT = {
   },
 
   ko: {
-    nav: ["홈","소개","학력","활동","프로젝트","블로그","연락처"],
+    nav: ["홈","소개","역량","활동","프로젝트","블로그","연락처"],
     hello: "안녕하세요, 저는",
     role: "한국학 전공 학생 | 한국 경제·정치·외교",
     intro: [
       "저는 호찌민시 국가대학교 인문사회과학대학 한국학과 4학년으로, 한국 경제·정치·외교를 전공하고 있습니다.",
       "한–베 IT 커뮤니케이터(IT Comtor) 직무, 물류 분야, 그리고 한국 기업에서의 커리어 성장에 관심이 있습니다."
     ],
-    b1: "자세히 보기",
+    b1: "프로젝트 보기",
     b2: "연락하기",
     aboutT: "소개",
     about: [
       "저는 호찌민시 국가대학교 인문사회과학대학 한국학과 4학년으로, 한국 경제·정치·외교를 전공하고 있습니다.",
       "한–베 IT 커뮤니케이터(IT Comtor) 직무, 물류 분야, 그리고 한국 기업에서의 커리어 성장에 관심이 있습니다."
     ],
-    skillsT: "학력",
-    university: "호찌민시 국가대학교 인문사회과학대학",
-    major: "한국학과 – 경제·정치·외교 전공",
+    skillsT: "역량",
     langT: "언어",
     techT: "기술 및 전문 역량",
     langs: [
       ["한국어","TOPIK 4급"],
       ["베트남어","모국어"],
-      ["영어","B2 – 준비 중"]
+      ["영어","[수준을 입력하세요]"]
     ],
     groups: [
       {
@@ -605,45 +568,21 @@ const CONTENT = {
         ]
       }
     ],
-    expT: "활동",
+    expT: "경험 및 활동",
     ph: "[설명을 입력하세요]",
     img: "이미지 자리",
-    acts: [
-      "Xuân Tình Nguyện 2026",
-      "“Em mơ …” [전체 제목 입력]",
-      "Thu San Sẻ – Trăng Đong Đầy",
-      "수어 동아리 활동",
-      "Nhà Nhiều Lá 인턴 프로젝트"
-    ],
-    projT: "프로젝트",
+   
+    projT: "프로젝트 및 교육",
     more: "자세히 보기",
-    projs: [
-      {
-        t:"KITS 2026",
-        s:"한–베 IT 통역 교육",
-        pts:[
-          "IT 기초 지식과 한–베 IT 용어를 학습했습니다.",
-          "IT 관련 상황에서 통번역을 실습했습니다.",
-          "비즈니스 커뮤니케이션, 문서 작성, 회의 관련 업무 실무 역량을 키웠습니다.",
-          "TOPCIT 2등급을 취득했습니다."
-        ]
-      },
-      {
-        t:"KITA 2026",
-        s:"무역 실무 한국어",
-        pts:[
-          "국제무역 관련 실무 한국어 용어를 학습했습니다.",
-          "비즈니스 서신 및 무역 문서 작성 역량을 키웠습니다.",
-          "수출입 절차와 무역 실무의 기초를 학습했습니다.",
-          "비즈니스·무역 상황에서 통번역을 실습했습니다."
-        ]
-      }
-    ],
+  
     dDesc: "개요",
     close: "닫기",
-    blogT: "작은 공간",
-    blogEmpty: "아직 등록된 콘텐츠가 없습니다.",
-    blogBack: "블로그로 돌아가기",
+    blogT: "블로그",
+    blogEmpty: "아직 게시된 글이 없습니다.",
+    blogBack: "돌아가기",
+    activityEmpty: "아직 활동이 없습니다.",
+    projectEmpty: "아직 프로젝트가 없습니다.",
+    articleMore: "자세히 보기",
     contactT: "연락처",
     cs:[
       ["이메일","mhien0795work@gmail.com",LINKS.email,0],
@@ -715,10 +654,6 @@ const Skills = ({c, groups}) => html`
   <section id="skills">
     <div class="eyebrow">02</div>
     <h2>${c.skillsT}</h2>
-    <div class="education-heading">
-      <h3>${c.university}</h3>
-      <p>${c.major}</p>
-    </div>
     <div class="sk2">
       <div class="blk">
         <h3>${c.langT}</h3>
@@ -729,6 +664,7 @@ const Skills = ({c, groups}) => html`
           </div>
         `)}
       </div>
+
       ${groups.map((g,i)=>html`
         <div class="blk" key=${g.h || i}>
           <h3>${g.h}</h3>
@@ -741,10 +677,64 @@ const Skills = ({c, groups}) => html`
   </section>
 `;
 
-const ArticleSection = ({id, number, title, posts, loading, open, c}) => html`
+const ArticleSection = ({id, number, title, items, loading, empty, open, more}) => html`
   <section id=${id}>
     <div class="eyebrow">${number}</div>
     <h2>${title}</h2>
+    ${loading
+      ? html`<p class="blog-empty">Loading...</p>`
+      : items.length === 0
+        ? html`<p class="blog-empty">${empty}</p>`
+        : html`
+          <div class="grid">
+            ${items.map((item,i)=>html`
+              <button
+                class="card text-article-card"
+                key=${item.slug || i}
+                onClick=${()=>open(item)}
+              >
+                <div class="b">
+                  <p class="blog-date">${item.date || ""}</p>
+                  <h3>${item.title || "Untitled"}</h3>
+                  ${item.description ? html`<p>${item.description}</p>` : null}
+                  <p class="article-read">${more} →</p>
+                </div>
+              </button>
+            `)}
+          </div>
+        `
+    }
+  </section>
+`;
+
+const ArticleDetail = ({item, close, backLabel}) => {
+  if (!item) return null;
+
+  return html`
+    <div class="modal" onClick=${close}>
+      <article class="sheet" onClick=${e=>e.stopPropagation()}>
+        <p class="blog-date">${item.date || ""}</p>
+        <h3>${item.title || ""}</h3>
+        ${item.description ? html`<p>${item.description}</p>` : null}
+        <div
+          class="blog-content"
+          dangerouslySetInnerHTML=${{__html: item.body || "<p>Nội dung đang được cập nhật.</p>"}}
+        ></div>
+        <div class="btns">
+          <button class="btn" onClick=${close}>${backLabel}</button>
+        </div>
+      </article>
+    </div>
+  `;
+};
+
+/* ---------- Blog ---------- */
+
+const Blog = ({c, posts, loading, open}) => html`
+  <section id="blog">
+    <div class="eyebrow">05</div>
+    <h2>${c.blogT}</h2>
+
     ${loading
       ? html`<p class="blog-empty">Loading...</p>`
       : posts.length === 0
@@ -758,9 +748,16 @@ const ArticleSection = ({id, number, title, posts, loading, open, c}) => html`
                 onClick=${()=>open(post)}
               >
                 ${post.thumbnail
-                  ? html`<img src=${post.thumbnail} alt=${post.title} loading="lazy"/>`
-                  : html`<div class="ph">${c.img}</div>`
+                  ? html`
+                    <img
+                      src=${post.thumbnail}
+                      alt=${post.title}
+                      loading="lazy"
+                    />
+                  `
+                  : html`<div class="ph">Blog</div>`
                 }
+
                 <div class="b">
                   <p class="blog-date">${post.date || ""}</p>
                   <h3>${post.title}</h3>
@@ -772,69 +769,6 @@ const ArticleSection = ({id, number, title, posts, loading, open, c}) => html`
         `
     }
   </section>
-`;
-
-const Detail = ({c, project, close}) => {
-  if (!project) return null;
-
-  return html`
-    <div class="modal" onClick=${close}>
-      <div class="sheet" onClick=${e=>e.stopPropagation()}>
-        <h3>${project.t}</h3>
-        <p>${project.s}</p>
-
-        ${project.thumbnail
-          ? html`
-            <img
-              src=${project.thumbnail}
-              alt=${project.t}
-              style=${{width:"100%",marginTop:"20px"}}
-            />
-          `
-          : html`<div class="ph" style=${{margin:"20px 0 0"}}>${c.img}</div>`
-        }
-
-        <h4>${c.dDesc}</h4>
-        <ul>
-          ${project.pts.map((x,i)=>html`<li key=${i}>${x}</li>`)}
-        </ul>
-
-        ${(project.url || project.github)
-          ? html`
-            <div class="project-links">
-              ${project.url
-                ? html`<a href=${project.url} target="_blank" rel="noopener noreferrer">Website</a>`
-                : null
-              }
-              ${project.github
-                ? html`<a href=${project.github} target="_blank" rel="noopener noreferrer">GitHub</a>`
-                : null
-              }
-            </div>
-          `
-          : null
-        }
-
-        <div class="btns">
-          <button class="btn" onClick=${close}>${c.close}</button>
-        </div>
-      </div>
-    </div>
-  `;
-};
-
-/* ---------- Blog ---------- */
-
-const Blog = ({c, posts, loading, open}) => html`
-  <${ArticleSection}
-    id="blog"
-    number="05"
-    title=${c.blogT}
-    posts=${posts}
-    loading=${loading}
-    open=${open}
-    c=${c}
-  />
 `;
 
 const BlogDetail = ({post, close, c}) => {
@@ -858,14 +792,10 @@ const BlogDetail = ({post, close, c}) => {
           : null
         }
 
-        ${post.body
-          ? html`<div class="blog-content" dangerouslySetInnerHTML=${{__html: post.body}}></div>`
-          : null
-        }
-        ${post.details && post.details.length
-          ? html`<div class="blog-content"><ul>${post.details.map((item,i)=>html`<li key=${i}>${item}</li>`)}</ul></div>`
-          : null
-        }
+        <div
+          class="blog-content"
+          dangerouslySetInnerHTML=${{__html: post.body || ""}}
+        ></div>
 
         <div class="btns">
           <button class="btn" onClick=${close}>
@@ -906,15 +836,16 @@ const Contact = ({c}) => html`
 function App(){
   const [lang,setLang] = useState("vi");
 
-  const [projectData,setProjectData] = useState(null);
-  const [activityPosts,setActivityPosts] = useState([]);
-  const [activityLoading,setActivityLoading] = useState(true);
+  const [skillData,setSkillData] = useState(null);
 
   const [posts,setPosts] = useState([]);
   const [loading,setLoading] = useState(true);
+  const [activities,setActivities] = useState([]);
+  const [activitiesLoading,setActivitiesLoading] = useState(true);
+  const [projectPosts,setProjectPosts] = useState([]);
+  const [projectsLoading,setProjectsLoading] = useState(true);
 
-  const [selectedActivity,setSelectedActivity] = useState(null);
-  const [selectedProject,setSelectedProject] = useState(null);
+  const [selectedArticle,setSelectedArticle] = useState(null);
   const [selectedPost,setSelectedPost] = useState(null);
 
   const c = CONTENT[lang];
@@ -937,77 +868,61 @@ function App(){
         setLoading(false);
       });
 
-    fetch("/activity-index.json", {cache:"no-store"})
+    fetch("/activities-index.json", {cache:"no-store"})
       .then(response => {
         if (!response.ok) throw new Error("Cannot load activities");
         return response.json();
       })
-      .then(data => setActivityPosts(Array.isArray(data) ? data : []))
+      .then(data => setActivities(Array.isArray(data) ? data : []))
       .catch(error => {
-        console.error("Activity loading error:", error);
-        setActivityPosts([]);
+        console.error("Activities loading error:", error);
+        setActivities([]);
       })
-      .finally(() => setActivityLoading(false));
+      .finally(() => setActivitiesLoading(false));
 
     fetch("/project-index.json", {cache:"no-store"})
       .then(response => {
         if (!response.ok) throw new Error("Cannot load projects");
         return response.json();
       })
-      .then(data => {
-        setProjectData(Array.isArray(data) ? data : []);
-      })
+      .then(data => setProjectPosts(Array.isArray(data) ? data : []))
       .catch(error => {
         console.error("Project loading error:", error);
-        setProjectData([]);
-      });
+        setProjectPosts([]);
+      })
+      .finally(() => setProjectsLoading(false));
 
+    fetch("/skill-index.json", {cache:"no-store"})
+      .then(response => {
+        if (!response.ok) throw new Error("Cannot load skills");
+        return response.json();
+      })
+      .then(data => {
+        setSkillData(Array.isArray(data) ? data : []);
+      })
+      .catch(error => {
+        console.error("Skill loading error:", error);
+        setSkillData([]);
+      });
   }, []);
 
-  // Dữ liệu dự phòng cho dự án cũ
-  // Chuyển dữ liệu dự án CMS sang định dạng bài đăng như Blog
-  const projects = projectData && projectData.length > 0
-    ? projectData.map(p => {
-        const translated = p[lang] || p.vi || {};
-        return {
-          slug: p.slug,
-          title: translated.title || p.vi?.title || p.en?.title || p.ko?.title || "",
-          date: p.date || "",
-          description: translated.subtitle || translated.description || "",
-          details: translated.details || [],
-          body: translated.body || "",
-          thumbnail: p.thumbnail || ""
-        };
-      })
-    : c.projs.map((p,i) => ({
-        slug: "default-" + i,
-        title: p.t,
-        date: "",
-        description: p.s,
-        details: p.pts,
-        thumbnail: ""
-      }));
+  // Dữ liệu dự phòng cho kỹ năng cũ
+  const fallbackSkills = c.groups.map(g => ({
+    h: g.h,
+    i: g.i
+  }));
 
-  const activities = activityPosts.length
-    ? activityPosts.map(p => {
-        const translated = p[lang] || p.vi || {};
+  // Chuyển dữ liệu kỹ năng CMS theo ngôn ngữ
+  const groups = skillData && skillData.length > 0
+    ? skillData.map(g => {
+        const translated = g[lang] || g.vi || {};
+
         return {
-          slug: p.slug,
-          title: translated.title || p.vi?.title || p.en?.title || p.ko?.title || "",
-          date: p.date || "",
-          description: translated.description || translated.subtitle || "",
-          body: translated.body || "",
-          details: translated.details || [],
-          thumbnail: p.thumbnail || ""
+          h: translated.title || "",
+          i: translated.items || []
         };
       })
-    : c.acts.map((title,i) => ({
-        slug: "activity-default-" + i,
-        title,
-        date: "",
-        description: "",
-        thumbnail: ""
-      }));
+    : fallbackSkills;
 
   document.documentElement.lang = lang;
 
@@ -1023,27 +938,29 @@ function App(){
 
     <${Skills}
       c=${c}
-      groups=${c.groups}
+      groups=${groups}
     />
 
     <${ArticleSection}
       id="activities"
       number="03"
       title=${c.expT}
-      posts=${activities}
-      loading=${activityLoading}
-      open=${setSelectedActivity}
-      c=${c}
+      items=${activities}
+      loading=${activitiesLoading}
+      empty=${c.activityEmpty}
+      open=${setSelectedArticle}
+      more=${c.articleMore}
     />
 
     <${ArticleSection}
       id="projects"
       number="04"
       title=${c.projT}
-      posts=${projects}
-      loading=${false}
-      open=${setSelectedProject}
-      c=${c}
+      items=${projectPosts}
+      loading=${projectsLoading}
+      empty=${c.projectEmpty}
+      open=${setSelectedArticle}
+      more=${c.articleMore}
     />
 
     <${Blog}
@@ -1057,16 +974,10 @@ function App(){
 
     <footer>© 2026 ${NAME}</footer>
 
-    <${BlogDetail}
-      post=${selectedActivity}
-      close=${()=>setSelectedActivity(null)}
-      c=${c}
-    />
-
-    <${BlogDetail}
-      post=${selectedProject}
-      close=${()=>setSelectedProject(null)}
-      c=${c}
+    <${ArticleDetail}
+      item=${selectedArticle}
+      close=${()=>setSelectedArticle(null)}
+      backLabel=${c.blogBack}
     />
 
     <${BlogDetail}
