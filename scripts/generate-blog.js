@@ -10,9 +10,7 @@ const root = path.join(__dirname, "..");
 function readCollection(folderName) {
   const folder = path.join(root, "content", folderName);
 
-  if (!fs.existsSync(folder)) {
-    return [];
-  }
+  if (!fs.existsSync(folder)) return [];
 
   return fs.readdirSync(folder)
     .filter(file => file.endsWith(".md") || file.endsWith(".markdown"))
@@ -27,6 +25,14 @@ function readCollection(folderName) {
         body: sanitizeHtml(marked.parse(content))
       };
     });
+}
+
+function getList(value) {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map(item => typeof item === "string" ? item : item.item || item.skill || "")
+    .filter(Boolean);
 }
 
 // BLOG
@@ -44,29 +50,52 @@ const blogPosts = readCollection("blog")
 
 // PROJECTS
 const projects = readCollection("projects")
-  .filter(project => project.title)
+  .filter(project => project.title_vi || project.title_en || project.title_ko)
   .map(project => ({
-    title: project.title,
-    category: project.category || "",
-    description: project.description || "",
+    slug: project.slug,
     thumbnail: project.thumbnail || "",
     url: project.url || "",
     github: project.github || "",
-    slug: project.slug,
-    body: project.body
+
+    vi: {
+      title: project.title_vi || "",
+      subtitle: project.subtitle_vi || "",
+      details: getList(project.details_vi)
+    },
+
+    en: {
+      title: project.title_en || "",
+      subtitle: project.subtitle_en || "",
+      details: getList(project.details_en)
+    },
+
+    ko: {
+      title: project.title_ko || "",
+      subtitle: project.subtitle_ko || "",
+      details: getList(project.details_ko)
+    }
   }));
 
 // SKILLS
 const skills = readCollection("skills")
-  .filter(skill => skill.title)
+  .filter(skill => skill.title_vi || skill.title_en || skill.title_ko)
   .map(skill => ({
-    title: skill.title,
-    items: Array.isArray(skill.items)
-      ? skill.items.map(item =>
-          typeof item === "string" ? item : item.skill || ""
-        ).filter(Boolean)
-      : [],
-    slug: skill.slug
+    slug: skill.slug,
+
+    vi: {
+      title: skill.title_vi || "",
+      items: getList(skill.items_vi)
+    },
+
+    en: {
+      title: skill.title_en || "",
+      items: getList(skill.items_en)
+    },
+
+    ko: {
+      title: skill.title_ko || "",
+      items: getList(skill.items_ko)
+    }
   }));
 
 // EXPORT JSON FILES
