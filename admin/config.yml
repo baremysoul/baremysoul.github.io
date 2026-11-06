@@ -13,7 +13,7 @@ publish_mode: simple
 collections:
   # BLOG
   - name: "blog"
-    label: "Bài viết"
+    label: "Góc nhỏ"
     folder: "content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -36,6 +36,35 @@ collections:
         required: false
 
       - label: "Nội dung bài viết"
+        name: "body"
+        widget: "markdown"
+
+  # ACTIVITIES
+  - name: "activities"
+    label: "Hoạt động"
+    folder: "content/activities"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Tiêu đề"
+        name: "title"
+        widget: "string"
+
+      - label: "Ngày"
+        name: "date"
+        widget: "datetime"
+        required: false
+
+      - label: "Mô tả ngắn"
+        name: "description"
+        widget: "text"
+
+      - label: "Ảnh bìa"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+
+      - label: "Nội dung chi tiết"
         name: "body"
         widget: "markdown"
 
@@ -109,9 +138,89 @@ collections:
         widget: "string"
         required: false
 
+  # EDUCATION
+  - name: "education"
+    label: "Học vấn"
+    files:
+      - name: "education"
+        label: "Thông tin học vấn"
+        file: "content/education/education.md"
+        fields:
+          - label: "Tên trường - Tiếng Việt"
+            name: "school_vi"
+            widget: "string"
+
+          - label: "School - English"
+            name: "school_en"
+            widget: "string"
+
+          - label: "학교명 - 한국어"
+            name: "school_ko"
+            widget: "string"
+
+          - label: "Ngành học - Tiếng Việt"
+            name: "major_vi"
+            widget: "string"
+
+          - label: "Major - English"
+            name: "major_en"
+            widget: "string"
+
+          - label: "전공 - 한국어"
+            name: "major_ko"
+            widget: "string"
+
+          - label: "Chứng chỉ ngôn ngữ - Tiếng Việt"
+            name: "language_vi"
+            widget: "list"
+            field:
+              label: "Chứng chỉ"
+              name: "item"
+              widget: "string"
+
+          - label: "Language certificates - English"
+            name: "language_en"
+            widget: "list"
+            field:
+              label: "Certificate"
+              name: "item"
+              widget: "string"
+
+          - label: "어학 자격 - 한국어"
+            name: "language_ko"
+            widget: "list"
+            field:
+              label: "자격"
+              name: "item"
+              widget: "string"
+
+          - label: "Kiến thức IT & kinh doanh - Tiếng Việt"
+            name: "it_vi"
+            widget: "list"
+            field:
+              label: "Nội dung"
+              name: "item"
+              widget: "string"
+
+          - label: "IT & Business knowledge - English"
+            name: "it_en"
+            widget: "list"
+            field:
+              label: "Content"
+              name: "item"
+              widget: "string"
+
+          - label: "IT 및 비즈니스 지식 - 한국어"
+            name: "it_ko"
+            widget: "list"
+            field:
+              label: "내용"
+              name: "item"
+              widget: "string"
+
   # SKILLS
   - name: "skills"
-    label: "Kỹ năng"
+    label: "Kỹ năng trong mục Học vấn"
     folder: "content/skills"
     create: true
     slug: "{{slug}}"
