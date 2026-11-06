@@ -88,11 +88,7 @@ const CONTENT = {
       {h:"Phát triển web với AI hỗ trợ", i:["Vibe Coding: sử dụng Claude và các công cụ AI để tạo, tùy chỉnh và hoàn thiện giao diện website thông qua câu lệnh bằng ngôn ngữ tự nhiên.","Hiểu biết cơ bản về cấu trúc website và frontend qua thực hành xây dựng portfolio."]}
     ],
     expT: "Kinh nghiệm & Hoạt động", ph: "[Thêm mô tả tại đây]", img: "Ảnh minh họa",
-    acts: ["Xuân Tình Nguyện 2026","“Em mơ …” [điền tên đầy đủ]","Thu San Sẻ – Trăng Đong Đầy",
-    {
-    t: "Hoạt động Câu lạc bộ Ngôn ngữ ký hiệu",
-    url: "https://www.facebook.com/share/v/19PMdGyyrG/?mibextid=wwXIfr"},
-      "Dự án thực tập Nhà Nhiều Lá"],
+    acts: ["Xuân Tình Nguyện 2026","“Em mơ …” [điền tên đầy đủ]","Thu San Sẻ – Trăng Đong Đầy","Hoạt động Câu lạc bộ Ngôn ngữ ký hiệu","Dự án thực tập Nhà Nhiều Lá"],
     projT: "Dự án & Đào tạo", more: "Xem chi tiết",
     projs: [
       {t:"KITS 2026",s:"Đào tạo Phiên dịch IT Hàn–Việt",pts:["Học kiến thức nền tảng về IT và thuật ngữ IT Hàn–Việt.","Thực hành biên phiên dịch trong bối cảnh liên quan đến IT.","Rèn luyện kỹ năng giao tiếp kinh doanh, soạn thảo tài liệu và xử lý công việc liên quan đến cuộc họp.","Đạt chứng chỉ TOPCIT cấp 2."]},
@@ -188,26 +184,9 @@ const Skills = ({c}) => html`
   </div></section>`;
 
 const Activities = ({c}) => html`
-  <section id="activities">
-    <div class="eyebrow">03</div>
-    <h2>${c.expT}</h2>
-    <div class="grid">
-      ${c.acts.map((a, i) => html`
-        <div class="card" key=${i}>
-          <div class="ph">${c.img}</div>
-          <div class="b">
-            <h3>
-              ${typeof a === "string"
-                ? a
-                : html`<a href=${a.url} target="_blank" rel="noopener noreferrer">${a.t}</a>`
-              }
-            </h3>
-            <p>${c.ph}</p>
-          </div>
-        </div>
-      `)}
-    </div>
-  </section>`;
+  <section id="activities"><div class="eyebrow">03</div><h2>${c.expT}</h2>
+  <div class="grid">${c.acts.map(a=>html`<div class="card" key=${a}><div class="ph">${c.img}</div><div class="b"><h3>${a}</h3><p>${c.ph}</p></div></div>`)}</div></section>`;
+
 const Projects = ({c, open}) => html`
   <section id="projects"><div class="eyebrow">04</div><h2>${c.projT}</h2>
   <div class="grid">${c.projs.map((p,i)=>html`<button class="card" key=${i} onClick=${()=>open(i)}><div class="ph">${c.img}</div><div class="b"><h3>${p.t}</h3><p>${p.s}</p><p style=${{color:"var(--green)",marginTop:12}}>${c.more} →</p></div></button>`)}</div></section>`;
