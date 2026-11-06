@@ -1,3 +1,4 @@
+
 backend:
   name: github
   repo: nnga48031-lab/My-portfolio
@@ -10,6 +11,7 @@ locale: "vi"
 publish_mode: simple
 
 collections:
+  # BLOG
   - name: "blog"
     label: "Bài viết"
     folder: "content/blog"
@@ -36,3 +38,57 @@ collections:
       - label: "Nội dung bài viết"
         name: "body"
         widget: "markdown"
+
+  # PROJECTS
+  - name: "projects"
+    label: "Dự án"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Tên dự án"
+        name: "title"
+        widget: "string"
+
+      - label: "Lĩnh vực"
+        name: "category"
+        widget: "string"
+        required: false
+
+      - label: "Mô tả dự án"
+        name: "description"
+        widget: "text"
+
+      - label: "Ảnh dự án"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+
+      - label: "Link dự án"
+        name: "url"
+        widget: "string"
+        required: false
+
+      - label: "Link GitHub"
+        name: "github"
+        widget: "string"
+        required: false
+
+  # SKILLS
+  - name: "skills"
+    label: "Kỹ năng"
+    folder: "content/skills"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Tên nhóm kỹ năng"
+        name: "title"
+        widget: "string"
+
+      - label: "Danh sách kỹ năng"
+        name: "items"
+        widget: "list"
+        field:
+          label: "Tên kỹ năng"
+          name: "skill"
+          widget: "string"
