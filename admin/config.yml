@@ -1,1 +1,38 @@
+backend:
+  name: github
+  repo: nnga48031-lab/My-portfolio
+  branch: main
 
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "vi"
+publish_mode: simple
+
+collections:
+  - name: "blog"
+    label: "Bài viết"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Tiêu đề"
+        name: "title"
+        widget: "string"
+
+      - label: "Ngày đăng"
+        name: "date"
+        widget: "datetime"
+
+      - label: "Mô tả ngắn"
+        name: "description"
+        widget: "text"
+
+      - label: "Ảnh bìa"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+
+      - label: "Nội dung bài viết"
+        name: "body"
+        widget: "markdown"
