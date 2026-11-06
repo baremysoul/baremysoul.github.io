@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,72 +8,293 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{--bg:#F8F7F2;--grey:#F2F2F2;--green:#2E5905;--ink:#1D2618;--line:rgba(29,38,24,.15);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1D2618;--grey:#26331f;--green:#9cc96b;--ink:#F8F7F2;--line:rgba(248,247,242,.2);color-scheme:dark}}
+:root{
+  --bg:#F8F7F2;
+  --grey:#F2F2F2;
+  --green:#2E5905;
+  --ink:#1D2618;
+  --line:rgba(29,38,24,.15);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1D2618;
+    --grey:#26331f;
+    --green:#9cc96b;
+    --ink:#F8F7F2;
+    --line:rgba(248,247,242,.2);
+    color-scheme:dark;
+  }
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.7}
-h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:400;line-height:1.1;margin:0}
-nav{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 5vw;background:var(--bg);border-bottom:1px solid var(--line)}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,sans-serif;
+  line-height:1.7;
+}
+h1,h2,h3{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:400;
+  line-height:1.1;
+  margin:0;
+}
+nav{
+  position:sticky;
+  top:0;
+  z-index:5;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:14px 5vw;
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+}
 nav .links{display:flex;gap:20px;flex-wrap:wrap}
-nav a{color:var(--ink);text-decoration:none;font-size:14px;transition:color .2s}
+nav a{
+  color:var(--ink);
+  text-decoration:none;
+  font-size:14px;
+  transition:color .2s;
+}
 nav a:hover{color:var(--green)}
-.lang button{border:1px solid var(--line);background:none;color:var(--ink);padding:4px 10px;cursor:pointer;font-size:13px}
-.lang button.on{background:var(--green);color:#fff;border-color:var(--green)}
-section{padding:90px 5vw;max-width:1200px;margin:0 auto;animation:up .8s both}
+.lang button{
+  border:1px solid var(--line);
+  background:none;
+  color:var(--ink);
+  padding:4px 10px;
+  cursor:pointer;
+  font-size:13px;
+}
+.lang button.on{
+  background:var(--green);
+  color:#fff;
+  border-color:var(--green);
+}
+section{
+  padding:90px 5vw;
+  max-width:1200px;
+  margin:0 auto;
+  animation:up .8s both;
+}
 @keyframes up{from{opacity:0;transform:translateY(16px)}}
-.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:18px}
-.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:6vw;align-items:center;min-height:80vh}
-.hero h1{font-size:clamp(52px,7.5vw,100px);line-height:1;letter-spacing:-.015em}
+.eyebrow{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--green);
+  margin-bottom:18px;
+}
+.hero{
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:6vw;
+  align-items:center;
+  min-height:80vh;
+}
+.hero h1{
+  font-size:clamp(52px,7.5vw,100px);
+  line-height:1;
+  letter-spacing:-.015em;
+}
 .hero h1 span{display:block}
-.hero h1 span+span{margin-left:.35em;font-style:italic;color:var(--green)}
+.hero h1 span+span{
+  margin-left:.35em;
+  font-style:italic;
+  color:var(--green);
+}
 .hero p.intro{max-width:54ch;margin:0 0 12px}
-.hero p.role{font-size:17px;color:var(--green);margin:22px 0 18px}
+.hero p.role{
+  font-size:17px;
+  color:var(--green);
+  margin:22px 0 18px;
+}
 .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-.btn{padding:12px 24px;border:1px solid var(--green);color:var(--green);text-decoration:none;background:none;cursor:pointer;font:inherit;font-size:14px;transition:.25s}
+.btn{
+  padding:12px 24px;
+  border:1px solid var(--green);
+  color:var(--green);
+  text-decoration:none;
+  background:none;
+  cursor:pointer;
+  font:inherit;
+  font-size:14px;
+  transition:.25s;
+}
 .btn.fill,.btn:hover{background:var(--green);color:#fff}
 .btn.fill:hover{opacity:.85}
-.photo{aspect-ratio:3/4;background:var(--grey);border:1px solid var(--line);display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:64px;color:var(--green);margin-top:40px}
+.photo{
+  aspect-ratio:3/4;
+  background:var(--grey);
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  font-family:'Playfair Display',serif;
+  font-size:64px;
+  color:var(--green);
+  margin-top:40px;
+}
 .cols{display:grid;grid-template-columns:1fr 2fr;gap:6vw}
 h2{font-size:clamp(34px,4.5vw,56px)}
 .cols p{margin:0 0 16px;max-width:60ch}
-.sk2{display:grid;grid-template-columns:1fr 1fr;gap:48px 6vw;margin-top:40px}
+.sk2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px 6vw;
+  margin-top:40px;
+}
 .blk h3{font-size:22px;margin-bottom:14px}
-.li{padding:10px 0;border-top:1px solid var(--line);font-size:15px}
-.lnk{color:var(--green);text-decoration:underline;text-underline-offset:4px;word-break:break-all;text-align:right}
+.li{
+  padding:10px 0;
+  border-top:1px solid var(--line);
+  font-size:15px;
+}
+.lnk{
+  color:var(--green);
+  text-decoration:underline;
+  text-underline-offset:4px;
+  word-break:break-all;
+  text-align:right;
+}
 .sheet ul{margin:0;padding-left:20px;opacity:.85}
 .sheet li{margin-bottom:8px}
 .sk{display:grid;grid-template-columns:1fr 1fr;gap:6vw}
 .sk h3{font-size:24px;margin-bottom:16px}
-.row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+  border-top:1px solid var(--line);
+}
 .row span:last-child{color:var(--green)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
-.card{border:1px solid var(--line);background:var(--grey);transition:transform .3s}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+  margin-top:40px;
+}
+.card{
+  border:1px solid var(--line);
+  background:var(--grey);
+  transition:transform .3s;
+}
 .card:hover{transform:translateY(-4px)}
-.ph{aspect-ratio:16/10;background:repeating-linear-gradient(45deg,var(--bg),var(--bg) 10px,var(--grey) 10px,var(--grey) 20px);display:grid;place-items:center;font-size:12px;opacity:.7}
+.ph{
+  aspect-ratio:16/10;
+  background:repeating-linear-gradient(
+    45deg,
+    var(--bg),
+    var(--bg) 10px,
+    var(--grey) 10px,
+    var(--grey) 20px
+  );
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  opacity:.7;
+}
 .card div.b{padding:20px}
 .card h3{font-size:22px;margin-bottom:8px}
 .card p{margin:0;font-size:14px;opacity:.85}
-button.card{text-align:left;color:inherit;font:inherit;cursor:pointer;padding:0}
-.modal{position:fixed;inset:0;z-index:10;background:rgba(29,38,24,.6);display:grid;place-items:center;padding:20px}
-.sheet{background:var(--bg);max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:36px;animation:up .4s both}
+button.card{
+  text-align:left;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+  padding:0;
+  width:100%;
+}
+.card img{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  display:block;
+}
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:10;
+  background:rgba(29,38,24,.6);
+  display:grid;
+  place-items:center;
+  padding:20px;
+}
+.sheet{
+  background:var(--bg);
+  max-width:640px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  padding:36px;
+  animation:up .4s both;
+}
 .sheet h3{font-size:32px;margin-bottom:6px}
-.sheet h4{margin:22px 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.sheet h4{
+  margin:22px 0 6px;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--green);
+}
 .sheet p{margin:0;opacity:.85}
-footer{padding:30px 5vw;border-top:1px solid var(--line);font-size:13px;opacity:.7}
+.sheet img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+footer{
+  padding:30px 5vw;
+  border-top:1px solid var(--line);
+  font-size:13px;
+  opacity:.7;
+}
 
 /* Blog */
 .blog-card{width:100%;overflow:hidden}
-.blog-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
-.blog-date{font-size:12px!important;color:var(--green);margin-bottom:8px!important}
+.blog-card img{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  display:block;
+}
+.blog-date{
+  font-size:12px!important;
+  color:var(--green);
+  margin-bottom:8px!important;
+}
 .blog-empty{margin-top:30px;opacity:.7}
-.blog-content{margin-top:28px;line-height:1.8;overflow-wrap:anywhere}
-.blog-content h1,.blog-content h2,.blog-content h3{margin:24px 0 12px}
+.blog-content{
+  margin-top:28px;
+  line-height:1.8;
+  overflow-wrap:anywhere;
+}
+.blog-content h1,
+.blog-content h2,
+.blog-content h3{margin:24px 0 12px}
 .blog-content p{margin:0 0 16px}
 .blog-content img{max-width:100%;height:auto}
 .blog-content ul,.blog-content ol{padding-left:24px}
 .blog-content a{color:var(--green)}
-.blog-content blockquote{border-left:3px solid var(--green);margin:20px 0;padding-left:16px;opacity:.8}
+.blog-content blockquote{
+  border-left:3px solid var(--green);
+  margin:20px 0;
+  padding-left:16px;
+  opacity:.8;
+}
+.project-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.project-links a{
+  color:var(--green);
+  text-decoration:underline;
+  text-underline-offset:4px;
+  font-size:14px;
+}
 
 @media(max-width:800px){
   .hero,.cols,.sk,.sk2{grid-template-columns:1fr}
@@ -105,8 +327,7 @@ const LINKS = {
   cv: "https://canva.link/07kr50fe60xbvp3"
 };
 
-/* NỘI DUNG PORTFOLIO – VI / EN / KO */
-  const CONTENT = {
+const CONTENT = {
   vi: {
     nav: ["Trang chủ","Giới thiệu","Kỹ năng","Hoạt động","Dự án","Blog","Liên hệ"],
     hello: "Xin chào, mình là",
@@ -419,7 +640,8 @@ const LINKS = {
     ]
   }
 };
-  const IDS = ["home","about","skills","activities","projects","blog","contact"];
+
+const IDS = ["home","about","skills","activities","projects","blog","contact"];
 
 /* ---------- Các thành phần giao diện ---------- */
 
@@ -477,7 +699,7 @@ const About = ({c}) => html`
   </section>
 `;
 
-const Skills = ({c}) => html`
+const Skills = ({c, groups}) => html`
   <section id="skills">
     <div class="eyebrow">02</div>
     <h2>${c.skillsT}</h2>
@@ -491,11 +713,12 @@ const Skills = ({c}) => html`
           </div>
         `)}
       </div>
-      ${c.groups.map(g=>html`
-        <div class="blk" key=${g.h}>
+
+      ${groups.map((g,i)=>html`
+        <div class="blk" key=${g.h || i}>
           <h3>${g.h}</h3>
-          ${g.i.map(x=>html`
-            <div class="li" key=${x}>${x}</div>
+          ${g.i.map((x,j)=>html`
+            <div class="li" key=${j}>${x}</div>
           `)}
         </div>
       `)}
@@ -521,43 +744,88 @@ const Activities = ({c}) => html`
   </section>
 `;
 
-const Projects = ({c, open}) => html`
+const Projects = ({c, projects, open}) => html`
   <section id="projects">
     <div class="eyebrow">04</div>
     <h2>${c.projT}</h2>
-    <div class="grid">
-      ${c.projs.map((p,i)=>html`
-        <button class="card" key=${i} onClick=${()=>open(i)}>
-          <div class="ph">${c.img}</div>
-          <div class="b">
-            <h3>${p.t}</h3>
-            <p>${p.s}</p>
-            <p style=${{color:"var(--green)",marginTop:12}}>
-              ${c.more} →
-            </p>
-          </div>
-        </button>
-      `)}
-    </div>
+
+    ${projects.length === 0
+      ? html`<p class="blog-empty">${c.blogEmpty}</p>`
+      : html`
+        <div class="grid">
+          ${projects.map((p,i)=>html`
+            <button
+              class="card"
+              key=${p.slug || i}
+              onClick=${()=>open(p)}
+            >
+              ${p.thumbnail
+                ? html`<img src=${p.thumbnail} alt=${p.t} loading="lazy"/>`
+                : html`<div class="ph">${c.img}</div>`
+              }
+              <div class="b">
+                <h3>${p.t}</h3>
+                <p>${p.s}</p>
+                <p style=${{color:"var(--green)",marginTop:12}}>
+                  ${c.more} →
+                </p>
+              </div>
+            </button>
+          `)}
+        </div>
+      `
+    }
   </section>
 `;
 
-const Detail = ({c, i, close}) => i===null ? null : html`
-  <div class="modal" onClick=${close}>
-    <div class="sheet" onClick=${e=>e.stopPropagation()}>
-      <h3>${c.projs[i].t}</h3>
-      <p>${c.projs[i].s}</p>
-      <div class="ph" style=${{margin:"20px 0 0"}}>${c.img}</div>
-      <h4>${c.dDesc}</h4>
-      <ul>
-        ${c.projs[i].pts.map(x=>html`<li key=${x}>${x}</li>`)}
-      </ul>
-      <div class="btns">
-        <button class="btn" onClick=${close}>${c.close}</button>
+const Detail = ({c, project, close}) => {
+  if (!project) return null;
+
+  return html`
+    <div class="modal" onClick=${close}>
+      <div class="sheet" onClick=${e=>e.stopPropagation()}>
+        <h3>${project.t}</h3>
+        <p>${project.s}</p>
+
+        ${project.thumbnail
+          ? html`
+            <img
+              src=${project.thumbnail}
+              alt=${project.t}
+              style=${{width:"100%",marginTop:"20px"}}
+            />
+          `
+          : html`<div class="ph" style=${{margin:"20px 0 0"}}>${c.img}</div>`
+        }
+
+        <h4>${c.dDesc}</h4>
+        <ul>
+          ${project.pts.map((x,i)=>html`<li key=${i}>${x}</li>`)}
+        </ul>
+
+        ${(project.url || project.github)
+          ? html`
+            <div class="project-links">
+              ${project.url
+                ? html`<a href=${project.url} target="_blank" rel="noopener noreferrer">Website</a>`
+                : null
+              }
+              ${project.github
+                ? html`<a href=${project.github} target="_blank" rel="noopener noreferrer">GitHub</a>`
+                : null
+              }
+            </div>
+          `
+          : null
+        }
+
+        <div class="btns">
+          <button class="btn" onClick=${close}>${c.close}</button>
+        </div>
       </div>
     </div>
-  </div>
-`;
+  `;
+};
 
 /* ---------- Blog ---------- */
 
@@ -661,24 +929,28 @@ const Contact = ({c}) => html`
     </div>
   </section>
 `;
-  /* ---------- Ứng dụng chính ---------- */
+
+/* ---------- Ứng dụng chính ---------- */
 
 function App(){
   const [lang,setLang] = useState("vi");
-  const [proj,setProj] = useState(null);
+
+  const [projectData,setProjectData] = useState(null);
+  const [skillData,setSkillData] = useState(null);
 
   const [posts,setPosts] = useState([]);
   const [loading,setLoading] = useState(true);
+
+  const [selectedProject,setSelectedProject] = useState(null);
   const [selectedPost,setSelectedPost] = useState(null);
 
   const c = CONTENT[lang];
 
+  // Đọc dữ liệu từ CMS
   React.useEffect(() => {
     fetch("/blog-index.json", {cache:"no-store"})
       .then(response => {
-        if (!response.ok) {
-          throw new Error("Cannot load blog");
-        }
+        if (!response.ok) throw new Error("Cannot load blog");
         return response.json();
       })
       .then(data => {
@@ -691,18 +963,104 @@ function App(){
       .finally(() => {
         setLoading(false);
       });
+
+    fetch("/project-index.json", {cache:"no-store"})
+      .then(response => {
+        if (!response.ok) throw new Error("Cannot load projects");
+        return response.json();
+      })
+      .then(data => {
+        setProjectData(Array.isArray(data) ? data : []);
+      })
+      .catch(error => {
+        console.error("Project loading error:", error);
+        setProjectData([]);
+      });
+
+    fetch("/skill-index.json", {cache:"no-store"})
+      .then(response => {
+        if (!response.ok) throw new Error("Cannot load skills");
+        return response.json();
+      })
+      .then(data => {
+        setSkillData(Array.isArray(data) ? data : []);
+      })
+      .catch(error => {
+        console.error("Skill loading error:", error);
+        setSkillData([]);
+      });
   }, []);
+
+  // Dữ liệu dự phòng cho dự án cũ
+  const fallbackProjects = c.projs.map((p,i) => ({
+    slug: "default-" + i,
+    t: p.t,
+    s: p.s,
+    pts: p.pts,
+    thumbnail: "",
+    url: "",
+    github: ""
+  }));
+
+  // Dữ liệu dự phòng cho kỹ năng cũ
+  const fallbackSkills = c.groups.map(g => ({
+    h: g.h,
+    i: g.i
+  }));
+
+  // Chuyển dữ liệu dự án CMS theo ngôn ngữ
+  const projects = projectData && projectData.length > 0
+    ? projectData.map(p => {
+        const translated = p[lang] || p.vi || {};
+
+        return {
+          slug: p.slug,
+          t: translated.title || p.vi?.title || p.en?.title || p.ko?.title || "",
+          s: translated.subtitle || "",
+          pts: translated.details || [],
+          thumbnail: p.thumbnail || "",
+          url: p.url || "",
+          github: p.github || ""
+        };
+      })
+    : fallbackProjects;
+
+  // Chuyển dữ liệu kỹ năng CMS theo ngôn ngữ
+  const groups = skillData && skillData.length > 0
+    ? skillData.map(g => {
+        const translated = g[lang] || g.vi || {};
+
+        return {
+          h: translated.title || "",
+          i: translated.items || []
+        };
+      })
+    : fallbackSkills;
 
   document.documentElement.lang = lang;
 
   return html`
-    <${Nav} c=${c} lang=${lang} setLang=${setLang}/>
+    <${Nav}
+      c=${c}
+      lang=${lang}
+      setLang=${setLang}
+    />
 
     <${Hero} c=${c}/>
     <${About} c=${c}/>
-    <${Skills} c=${c}/>
+
+    <${Skills}
+      c=${c}
+      groups=${groups}
+    />
+
     <${Activities} c=${c}/>
-    <${Projects} c=${c} open=${setProj}/>
+
+    <${Projects}
+      c=${c}
+      projects=${projects}
+      open=${setSelectedProject}
+    />
 
     <${Blog}
       c=${c}
@@ -717,8 +1075,8 @@ function App(){
 
     <${Detail}
       c=${c}
-      i=${proj}
-      close=${()=>setProj(null)}
+      project=${selectedProject}
+      close=${()=>setSelectedProject(null)}
     />
 
     <${BlogDetail}
