@@ -1,40 +1,93 @@
+
 const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
 const { marked } = require("marked");
 const sanitizeHtml = require("sanitize-html");
 
-const blogFolder = path.join(__dirname, "../content/blog");
-const outputFile = path.join(__dirname, "../blog-index.json");
+const root = path.join(__dirname, "..");
 
-const posts = [];
+function readCollection(folderName) {
+  const folder = path.join(root, "content", folderName);
 
-if (fs.existsSync(blogFolder)) {
-  const files = fs.readdirSync(blogFolder)
-    .filter(file => file.endsWith(".md") || file.endsWith(".markdown"));
-
-  for (const file of files) {
-    const filePath = path.join(blogFolder, file);
-    const raw = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(raw);
-
-    if (!data.title) continue;
-
-    const html = marked.parse(content);
-
-    posts.push({
-      title: data.title,
-      date: data.date || "",
-      description: data.description || "",
-      thumbnail: data.thumbnail || "",
-      slug: path.parse(file).name,
-      body: sanitizeHtml(html)
-    });
+  if (!fs.existsSync(folder)) {
+    return [];
   }
+
+  return fs.readdirSync(folder)
+    .filter(file => file.endsWith(".md") || file.endsWith(".markdown"))
+    .map(file => {
+      const filePath = path.join(folder, file);
+      const raw = fs.readFileSync(filePath, "utf8");
+      const { data, content } = matter(raw);
+
+      return {
+        ...data,
+        slug: path.parse(file).name,
+        body: sanitizeHtml(marked.parse(content))
+      };
+    });
 }
 
-posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+// BLOG
+const blogPosts = readCollection("blog")
+  .filter(post => post.title)
+  .map(post => ({
+    title: post.title,
+    date: post.date || "",
+    description: post.description || "",
+    thumbnail: post.thumbnail || "",
+    slug: post.slug,
+    body: post.body
+  }))
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2), "utf8");
+// PROJECTS
+const projects = readCollection("projects")
+  .filter(project => project.title)
+  .map(project => ({
+    title: project.title,
+    category: project.category || "",
+    description: project.description || "",
+    thumbnail: project.thumbnail || "",
+    url: project.url || "",
+    github: project.github || "",
+    slug: project.slug,
+    body: project.body
+  }));
 
-console.log(`Generated blog-index.json with ${posts.length} posts.`);
+// SKILLS
+const skills = readCollection("skills")
+  .filter(skill => skill.title)
+  .map(skill => ({
+    title: skill.title,
+    items: Array.isArray(skill.items)
+      ? skill.items.map(item =>
+          typeof item === "string" ? item : item.skill || ""
+        ).filter(Boolean)
+      : [],
+    slug: skill.slug
+  }));
+
+// EXPORT JSON FILES
+fs.writeFileSync(
+  path.join(root, "blog-index.json"),
+  JSON.stringify(blogPosts, null, 2),
+  "utf8"
+);
+
+fs.writeFileSync(
+  path.join(root, "project-index.json"),
+  JSON.stringify(projects, null, 2),
+  "utf8"
+);
+
+fs.writeFileSync(
+  path.join(root, "skill-index.json"),
+  JSON.stringify(skills, null, 2),
+  "utf8"
+);
+
+console.log(`Generated ${blogPosts.length} blog posts.`);
+console.log(`Generated ${projects.length} projects.`);
+console.log(`Generated ${skills.length} skill groups.`);
