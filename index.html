@@ -5,31 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mai Thị Thanh Hiền – Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 :root{--bg:#F8F7F2;--grey:#F2F2F2;--green:#2E5905;--ink:#1D2618;--line:rgba(29,38,24,.15);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1D2618;--grey:#26331f;--green:#9cc96b;--ink:#F8F7F2;--line:rgba(248,247,242,.2);color-scheme:dark}}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.7}
 h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:400;line-height:1.1;margin:0}
 nav{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 5vw;background:var(--bg);border-bottom:1px solid var(--line)}
 nav .links{display:flex;gap:20px;flex-wrap:wrap}
-nav a{color:var(--ink);text-decoration:none;font-size:14px;transition:color .2s}nav a:hover{color:var(--green)}
+nav a{color:var(--ink);text-decoration:none;font-size:14px;transition:color .2s}
+nav a:hover{color:var(--green)}
 .lang button{border:1px solid var(--line);background:none;color:var(--ink);padding:4px 10px;cursor:pointer;font-size:13px}
 .lang button.on{background:var(--green);color:#fff;border-color:var(--green)}
 section{padding:90px 5vw;max-width:1200px;margin:0 auto;animation:up .8s both}
 @keyframes up{from{opacity:0;transform:translateY(16px)}}
 .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:18px}
 .hero{display:grid;grid-template-columns:1.5fr 1fr;gap:6vw;align-items:center;min-height:80vh}
-.hero h1{font-size:clamp(52px,7.5vw,100px);line-height:1;letter-spacing:-.015em}.hero h1 span{display:block}.hero h1 span+span{margin-left:.35em;font-style:italic;color:var(--green)}.hero p.intro{max-width:54ch;margin:0 0 12px}
+.hero h1{font-size:clamp(52px,7.5vw,100px);line-height:1;letter-spacing:-.015em}
+.hero h1 span{display:block}
+.hero h1 span+span{margin-left:.35em;font-style:italic;color:var(--green)}
+.hero p.intro{max-width:54ch;margin:0 0 12px}
 .hero p.role{font-size:17px;color:var(--green);margin:22px 0 18px}
 .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
 .btn{padding:12px 24px;border:1px solid var(--green);color:var(--green);text-decoration:none;background:none;cursor:pointer;font:inherit;font-size:14px;transition:.25s}
-.btn.fill,.btn:hover{background:var(--green);color:#fff}.btn.fill:hover{opacity:.85}
+.btn.fill,.btn:hover{background:var(--green);color:#fff}
+.btn.fill:hover{opacity:.85}
 .photo{aspect-ratio:3/4;background:var(--grey);border:1px solid var(--line);display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:64px;color:var(--green);margin-top:40px}
 .cols{display:grid;grid-template-columns:1fr 2fr;gap:6vw}
 h2{font-size:clamp(34px,4.5vw,56px)}
 .cols p{margin:0 0 16px;max-width:60ch}
-.sk2{display:grid;grid-template-columns:1fr 1fr;gap:48px 6vw;margin-top:40px}.blk h3{font-size:22px;margin-bottom:14px}.li{padding:10px 0;border-top:1px solid var(--line);font-size:15px}.lnk{color:var(--green);text-decoration:underline;text-underline-offset:4px;word-break:break-all;text-align:right}.sheet ul{margin:0;padding-left:20px;opacity:.85}.sheet li{margin-bottom:8px}.sk{display:grid;grid-template-columns:1fr 1fr;gap:6vw}
+.sk2{display:grid;grid-template-columns:1fr 1fr;gap:48px 6vw;margin-top:40px}
+.blk h3{font-size:22px;margin-bottom:14px}
+.li{padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.lnk{color:var(--green);text-decoration:underline;text-underline-offset:4px;word-break:break-all;text-align:right}
+.sheet ul{margin:0;padding-left:20px;opacity:.85}
+.sheet li{margin-bottom:8px}
+.sk{display:grid;grid-template-columns:1fr 1fr;gap:6vw}
 .sk h3{font-size:24px;margin-bottom:16px}
 .row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
 .row span:last-child{color:var(--green)}
@@ -37,185 +50,688 @@ h2{font-size:clamp(34px,4.5vw,56px)}
 .card{border:1px solid var(--line);background:var(--grey);transition:transform .3s}
 .card:hover{transform:translateY(-4px)}
 .ph{aspect-ratio:16/10;background:repeating-linear-gradient(45deg,var(--bg),var(--bg) 10px,var(--grey) 10px,var(--grey) 20px);display:grid;place-items:center;font-size:12px;opacity:.7}
-.card div.b{padding:20px}.card h3{font-size:22px;margin-bottom:8px}.card p{margin:0;font-size:14px;opacity:.85}
+.card div.b{padding:20px}
+.card h3{font-size:22px;margin-bottom:8px}
+.card p{margin:0;font-size:14px;opacity:.85}
 button.card{text-align:left;color:inherit;font:inherit;cursor:pointer;padding:0}
 .modal{position:fixed;inset:0;z-index:10;background:rgba(29,38,24,.6);display:grid;place-items:center;padding:20px}
 .sheet{background:var(--bg);max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:36px;animation:up .4s both}
-.sheet h3{font-size:32px;margin-bottom:6px}.sheet h4{margin:22px 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.sheet h3{font-size:32px;margin-bottom:6px}
+.sheet h4{margin:22px 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
 .sheet p{margin:0;opacity:.85}
 footer{padding:30px 5vw;border-top:1px solid var(--line);font-size:13px;opacity:.7}
-@media(max-width:800px){.hero,.cols,.sk,.sk2{grid-template-columns:1fr}.hero{min-height:0}section{padding:60px 5vw}.photo{max-width:320px}}
+
+/* Blog */
+.blog-card{width:100%;overflow:hidden}
+.blog-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.blog-date{font-size:12px!important;color:var(--green);margin-bottom:8px!important}
+.blog-empty{margin-top:30px;opacity:.7}
+.blog-content{margin-top:28px;line-height:1.8;overflow-wrap:anywhere}
+.blog-content h1,.blog-content h2,.blog-content h3{margin:24px 0 12px}
+.blog-content p{margin:0 0 16px}
+.blog-content img{max-width:100%;height:auto}
+.blog-content ul,.blog-content ol{padding-left:24px}
+.blog-content a{color:var(--green)}
+.blog-content blockquote{border-left:3px solid var(--green);margin:20px 0;padding-left:16px;opacity:.8}
+
+@media(max-width:800px){
+  .hero,.cols,.sk,.sk2{grid-template-columns:1fr}
+  .hero{min-height:0}
+  section{padding:60px 5vw}
+  .photo{max-width:320px}
+  nav{align-items:flex-start;flex-wrap:wrap}
+  nav .links{gap:12px}
+}
 </style>
 </head>
+
 <body>
 <div id="root"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.js"></script>
+
 <script>
 const { useState } = React;
 const html = htm.bind(React.createElement);
 
 const NAME = "Mai Thị Thanh Hiền";
 const NAME_LINES = ["Mai Thị", "Thanh Hiền"];
+
 const LINKS = {
   email: "mailto:mhien0795work@gmail.com",
   linkedin: "https://www.linkedin.com/in/mai-th%E1%BB%8B-thanh-hi%E1%BB%81n-undefined-3a9797449/",
   cv: "https://canva.link/07kr50fe60xbvp3"
 };
-/* =====================================================
-   NỘI DUNG (CONTENT) – CHỈ CẦN SỬA PHẦN NÀY
-   Hai ngôn ngữ: vi / en, cùng một cấu trúc.
-   Chỗ có [ ... ] là placeholder để bạn tự điền.
-   ===================================================== */
-const CONTENT = {
+
+/* NỘI DUNG PORTFOLIO – VI / EN / KO */
+  const CONTENT = {
   vi: {
-    nav: ["Trang chủ","Giới thiệu","Kỹ năng","Hoạt động","Dự án","Liên hệ"],
+    nav: ["Trang chủ","Giới thiệu","Kỹ năng","Hoạt động","Dự án","Blog","Liên hệ"],
     hello: "Xin chào, mình là",
     role: "Sinh viên Hàn Quốc học | Kinh tế, Chính trị & Ngoại giao Hàn Quốc",
-    intro: ["Mình là sinh viên năm cuối ngành Hàn Quốc học tại Trường Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM, chuyên ngành Kinh tế, Chính trị và Ngoại giao Hàn Quốc.",
-      "Mình quan tâm đến vai trò IT Comtor Hàn–Việt, lĩnh vực Logistics và định hướng phát triển sự nghiệp tại các doanh nghiệp Hàn Quốc."],
-    b1: "Xem dự án", b2: "Liên hệ",
+    intro: [
+      "Mình là sinh viên năm cuối ngành Hàn Quốc học tại Trường Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM, chuyên ngành Kinh tế, Chính trị và Ngoại giao Hàn Quốc.",
+      "Mình quan tâm đến vai trò IT Comtor Hàn–Việt, lĩnh vực Logistics và định hướng phát triển sự nghiệp tại các doanh nghiệp Hàn Quốc."
+    ],
+    b1: "Xem dự án",
+    b2: "Liên hệ",
     aboutT: "Giới thiệu",
-    about: ["Mình là sinh viên năm cuối ngành Hàn Quốc học tại Trường Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM, chuyên ngành Kinh tế, Chính trị và Ngoại giao Hàn Quốc.",
-      "Mình quan tâm đến vai trò IT Comtor Hàn–Việt, lĩnh vực Logistics và định hướng phát triển sự nghiệp tại các doanh nghiệp Hàn Quốc."],
-    skillsT: "Kỹ năng", langT: "Ngôn ngữ", techT: "Chuyên môn & Nghiệp vụ",
-    langs: [["Tiếng Hàn","TOPIK cấp 4"],["Tiếng Việt","Bản ngữ"],["Tiếng Anh","[Điền trình độ của bạn]"]],
+    about: [
+      "Mình là sinh viên năm cuối ngành Hàn Quốc học tại Trường Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM, chuyên ngành Kinh tế, Chính trị và Ngoại giao Hàn Quốc.",
+      "Mình quan tâm đến vai trò IT Comtor Hàn–Việt, lĩnh vực Logistics và định hướng phát triển sự nghiệp tại các doanh nghiệp Hàn Quốc."
+    ],
+    skillsT: "Kỹ năng",
+    langT: "Ngôn ngữ",
+    techT: "Chuyên môn & Nghiệp vụ",
+    langs: [
+      ["Tiếng Hàn","TOPIK cấp 4"],
+      ["Tiếng Việt","Bản ngữ"],
+      ["Tiếng Anh","[Điền trình độ của bạn]"]
+    ],
     groups: [
-      {h:"Kiến thức IT & Kinh doanh", i:["TOPCIT cấp 2","Kiến thức cơ bản về IT và thương mại quốc tế","Giao tiếp trong kinh doanh"]},
-      {h:"Hành chính văn phòng & Tài liệu", i:["Microsoft Word, Excel, PowerPoint (MOS)","Soạn thảo và định dạng văn bản kinh doanh","Tổng hợp thông tin và lập báo cáo","Biên bản họp và tài liệu hành chính","Sắp xếp, lưu trữ và quản lý hồ sơ"]},
-      {h:"Ngôn ngữ & Giao tiếp", i:["Biên phiên dịch","Giao tiếp Hàn–Việt"]},
-      {h:"Phát triển web với AI hỗ trợ", i:["Vibe Coding: sử dụng Claude và các công cụ AI để tạo, tùy chỉnh và hoàn thiện giao diện website thông qua câu lệnh bằng ngôn ngữ tự nhiên.","Hiểu biết cơ bản về cấu trúc website và frontend qua thực hành xây dựng portfolio."]}
+      {
+        h:"Kiến thức IT & Kinh doanh",
+        i:[
+          "TOPCIT cấp 2",
+          "Kiến thức cơ bản về IT và thương mại quốc tế",
+          "Giao tiếp trong kinh doanh"
+        ]
+      },
+      {
+        h:"Hành chính văn phòng & Tài liệu",
+        i:[
+          "Microsoft Word, Excel, PowerPoint (MOS)",
+          "Soạn thảo và định dạng văn bản kinh doanh",
+          "Tổng hợp thông tin và lập báo cáo",
+          "Biên bản họp và tài liệu hành chính",
+          "Sắp xếp, lưu trữ và quản lý hồ sơ"
+        ]
+      },
+      {
+        h:"Ngôn ngữ & Giao tiếp",
+        i:[
+          "Biên phiên dịch",
+          "Giao tiếp Hàn–Việt"
+        ]
+      },
+      {
+        h:"Phát triển web với AI hỗ trợ",
+        i:[
+          "Vibe Coding: sử dụng Claude và các công cụ AI để tạo, tùy chỉnh và hoàn thiện giao diện website thông qua câu lệnh bằng ngôn ngữ tự nhiên.",
+          "Hiểu biết cơ bản về cấu trúc website và frontend qua thực hành xây dựng portfolio."
+        ]
+      }
     ],
-    expT: "Kinh nghiệm & Hoạt động", ph: "[Thêm mô tả tại đây]", img: "Ảnh minh họa",
-    acts: ["Xuân Tình Nguyện 2026","“Em mơ …” [điền tên đầy đủ]","Thu San Sẻ – Trăng Đong Đầy","Hoạt động Câu lạc bộ Ngôn ngữ ký hiệu","Dự án thực tập Nhà Nhiều Lá"],
-    projT: "Dự án & Đào tạo", more: "Xem chi tiết",
+    expT: "Kinh nghiệm & Hoạt động",
+    ph: "[Thêm mô tả tại đây]",
+    img: "Ảnh minh họa",
+    acts: [
+      "Xuân Tình Nguyện 2026",
+      "“Em mơ …” [điền tên đầy đủ]",
+      "Thu San Sẻ – Trăng Đong Đầy",
+      "Hoạt động Câu lạc bộ Ngôn ngữ ký hiệu",
+      "Dự án thực tập Nhà Nhiều Lá"
+    ],
+    projT: "Dự án & Đào tạo",
+    more: "Xem chi tiết",
     projs: [
-      {t:"KITS 2026",s:"Đào tạo Phiên dịch IT Hàn–Việt",pts:["Học kiến thức nền tảng về IT và thuật ngữ IT Hàn–Việt.","Thực hành biên phiên dịch trong bối cảnh liên quan đến IT.","Rèn luyện kỹ năng giao tiếp kinh doanh, soạn thảo tài liệu và xử lý công việc liên quan đến cuộc họp.","Đạt chứng chỉ TOPCIT cấp 2."]},
-      {t:"KITA 2026",s:"Tiếng Hàn thực hành trong Ngoại thương",pts:["Học thuật ngữ tiếng Hàn thực tế trong lĩnh vực thương mại quốc tế.","Rèn luyện kỹ năng viết thư tín thương mại và chứng từ ngoại thương.","Tìm hiểu quy trình xuất nhập khẩu cơ bản và hoạt động thương mại.","Thực hành biên phiên dịch trong bối cảnh kinh doanh và thương mại."]}
+      {
+        t:"KITS 2026",
+        s:"Đào tạo Phiên dịch IT Hàn–Việt",
+        pts:[
+          "Học kiến thức nền tảng về IT và thuật ngữ IT Hàn–Việt.",
+          "Thực hành biên phiên dịch trong bối cảnh liên quan đến IT.",
+          "Rèn luyện kỹ năng giao tiếp kinh doanh, soạn thảo tài liệu và xử lý công việc liên quan đến cuộc họp.",
+          "Đạt chứng chỉ TOPCIT cấp 2."
+        ]
+      },
+      {
+        t:"KITA 2026",
+        s:"Tiếng Hàn thực hành trong Ngoại thương",
+        pts:[
+          "Học thuật ngữ tiếng Hàn thực tế trong lĩnh vực thương mại quốc tế.",
+          "Rèn luyện kỹ năng viết thư tín thương mại và chứng từ ngoại thương.",
+          "Tìm hiểu quy trình xuất nhập khẩu cơ bản và hoạt động thương mại.",
+          "Thực hành biên phiên dịch trong bối cảnh kinh doanh và thương mại."
+        ]
+      }
     ],
-    dDesc: "Nội dung", close: "Đóng",
-    contactT: "Liên hệ", cs: [["Email","mhien0795work@gmail.com",LINKS.email,0],["LinkedIn","Xem hồ sơ LinkedIn",LINKS.linkedin,1],["CV","Xem CV trên Canva",LINKS.cv,1]]
+    dDesc: "Nội dung",
+    close: "Đóng",
+    blogT: "Bài viết",
+    blogEmpty: "Chưa có bài viết nào.",
+    blogBack: "Quay lại Blog",
+    contactT: "Liên hệ",
+    cs:[
+      ["Email","mhien0795work@gmail.com",LINKS.email,0],
+      ["LinkedIn","Xem hồ sơ LinkedIn",LINKS.linkedin,1],
+      ["CV","Xem CV trên Canva",LINKS.cv,1]
+    ]
   },
+
   en: {
-    nav: ["Home","About","Skills","Activities","Projects","Contact"],
+    nav: ["Home","About","Skills","Activities","Projects","Blog","Contact"],
     hello: "Hello, I’m",
     role: "Korean Studies Student | Korean Economics, Politics & Diplomacy",
-    intro: ["I am a senior Korean Studies student at the University of Social Sciences and Humanities, VNU-HCM, specializing in Korean Economics, Politics and Diplomacy.",
-      "I am interested in the role of a Korean–Vietnamese IT Comtor, the logistics field, and building a career in Korean companies."],
-    b1: "View My Projects", b2: "Contact Me",
+    intro: [
+      "I am a senior Korean Studies student at the University of Social Sciences and Humanities, VNU-HCM, specializing in Korean Economics, Politics and Diplomacy.",
+      "I am interested in the role of a Korean–Vietnamese IT Comtor, the logistics field, and building a career in Korean companies."
+    ],
+    b1: "View My Projects",
+    b2: "Contact Me",
     aboutT: "About Me",
-    about: ["I am a senior Korean Studies student at the University of Social Sciences and Humanities, VNU-HCM, specializing in Korean Economics, Politics and Diplomacy.",
-      "I am interested in the role of a Korean–Vietnamese IT Comtor, the logistics field, and building a career in Korean companies."],
-    skillsT: "Skills", langT: "Language", techT: "Technical & Professional",
-    langs: [["Korean","TOPIK Level 4"],["Vietnamese","Native"],["English","[Add your level]"]],
+    about: [
+      "I am a senior Korean Studies student at the University of Social Sciences and Humanities, VNU-HCM, specializing in Korean Economics, Politics and Diplomacy.",
+      "I am interested in the role of a Korean–Vietnamese IT Comtor, the logistics field, and building a career in Korean companies."
+    ],
+    skillsT: "Skills",
+    langT: "Language",
+    techT: "Technical & Professional",
+    langs: [
+      ["Korean","TOPIK Level 4"],
+      ["Vietnamese","Native"],
+      ["English","[Add your level]"]
+    ],
     groups: [
-      {h:"IT & Business Knowledge", i:["TOPCIT Level 2","Basic knowledge of IT and international trade","Business communication"]},
-      {h:"Office Administration & Documentation", i:["Microsoft Word, Excel, PowerPoint (MOS)","Business document drafting and formatting","Information compilation and report preparation","Meeting minutes and administrative documentation","Document organization, filing, and record management"]},
-      {h:"Language & Communication", i:["Translation and interpretation","Korean–Vietnamese communication"]},
-      {h:"AI-Assisted Development", i:["Vibe Coding: using Claude and AI-assisted tools to generate, customize and refine website interfaces through natural-language prompts.","Basic understanding of website structure and frontend development through hands-on portfolio building."]}
+      {
+        h:"IT & Business Knowledge",
+        i:[
+          "TOPCIT Level 2",
+          "Basic knowledge of IT and international trade",
+          "Business communication"
+        ]
+      },
+      {
+        h:"Office Administration & Documentation",
+        i:[
+          "Microsoft Word, Excel, PowerPoint (MOS)",
+          "Business document drafting and formatting",
+          "Information compilation and report preparation",
+          "Meeting minutes and administrative documentation",
+          "Document organization, filing, and record management"
+        ]
+      },
+      {
+        h:"Language & Communication",
+        i:[
+          "Translation and interpretation",
+          "Korean–Vietnamese communication"
+        ]
+      },
+      {
+        h:"AI-Assisted Development",
+        i:[
+          "Vibe Coding: using Claude and AI-assisted tools to generate, customize and refine website interfaces through natural-language prompts.",
+          "Basic understanding of website structure and frontend development through hands-on portfolio building."
+        ]
+      }
     ],
-    expT: "Experience & Activities", ph: "[Add description here]", img: "Image placeholder",
-    acts: ["Xuân Tình Nguyện 2026","“Em mơ …” [add full title]","Thu San Sẻ – Trăng Đong Đầy","Sign Language Club activities","Nhà Nhiều Lá Intern Project"],
-    projT: "Projects & Training", more: "View details",
+    expT: "Experience & Activities",
+    ph: "[Add description here]",
+    img: "Image placeholder",
+    acts: [
+      "Xuân Tình Nguyện 2026",
+      "“Em mơ …” [add full title]",
+      "Thu San Sẻ – Trăng Đong Đầy",
+      "Sign Language Club activities",
+      "Nhà Nhiều Lá Intern Project"
+    ],
+    projT: "Projects & Training",
+    more: "View details",
     projs: [
-      {t:"KITS 2026",s:"Korean–Vietnamese IT Interpreter Training",pts:["Learned foundational IT knowledge and Korean–Vietnamese IT terminology.","Practiced translation and interpretation in IT-related contexts.","Developed practical skills in business communication, documentation, and meeting-related tasks.","Achieved TOPCIT Level 2."]},
-      {t:"KITA 2026",s:"Practical Korean for Foreign Trade",pts:["Learned practical Korean terminology related to international trade.","Developed skills in business correspondence and trade document writing.","Studied fundamental import–export procedures and trade operations.","Practiced translation and interpretation in business and trade contexts."]}
+      {
+        t:"KITS 2026",
+        s:"Korean–Vietnamese IT Interpreter Training",
+        pts:[
+          "Learned foundational IT knowledge and Korean–Vietnamese IT terminology.",
+          "Practiced translation and interpretation in IT-related contexts.",
+          "Developed practical skills in business communication, documentation, and meeting-related tasks.",
+          "Achieved TOPCIT Level 2."
+        ]
+      },
+      {
+        t:"KITA 2026",
+        s:"Practical Korean for Foreign Trade",
+        pts:[
+          "Learned practical Korean terminology related to international trade.",
+          "Developed skills in business correspondence and trade document writing.",
+          "Studied fundamental import–export procedures and trade operations.",
+          "Practiced translation and interpretation in business and trade contexts."
+        ]
+      }
     ],
-    dDesc: "Overview", close: "Close",
-    contactT: "Contact", cs: [["Email","mhien0795work@gmail.com",LINKS.email,0],["LinkedIn","View LinkedIn profile",LINKS.linkedin,1],["CV","View CV on Canva",LINKS.cv,1]]
+    dDesc: "Overview",
+    close: "Close",
+    blogT: "Blog",
+    blogEmpty: "No posts yet.",
+    blogBack: "Back to Blog",
+    contactT: "Contact",
+    cs:[
+      ["Email","mhien0795work@gmail.com",LINKS.email,0],
+      ["LinkedIn","View LinkedIn profile",LINKS.linkedin,1],
+      ["CV","View CV on Canva",LINKS.cv,1]
+    ]
   },
+
   ko: {
-    nav: ["홈","소개","역량","활동","프로젝트","연락처"],
+    nav: ["홈","소개","역량","활동","프로젝트","블로그","연락처"],
     hello: "안녕하세요, 저는",
     role: "한국학 전공 학생 | 한국 경제·정치·외교",
-    intro: ["저는 호찌민시 국가대학교 인문사회과학대학 한국학과 4학년으로, 한국 경제·정치·외교를 전공하고 있습니다.",
-      "한–베 IT 커뮤니케이터(IT Comtor) 직무, 물류 분야, 그리고 한국 기업에서의 커리어 성장에 관심이 있습니다."],
-    b1: "프로젝트 보기", b2: "연락하기",
+    intro: [
+      "저는 호찌민시 국가대학교 인문사회과학대학 한국학과 4학년으로, 한국 경제·정치·외교를 전공하고 있습니다.",
+      "한–베 IT 커뮤니케이터(IT Comtor) 직무, 물류 분야, 그리고 한국 기업에서의 커리어 성장에 관심이 있습니다."
+    ],
+    b1: "프로젝트 보기",
+    b2: "연락하기",
     aboutT: "소개",
-    about: ["저는 호찌민시 국가대학교 인문사회과학대학 한국학과 4학년으로, 한국 경제·정치·외교를 전공하고 있습니다.",
-      "한–베 IT 커뮤니케이터(IT Comtor) 직무, 물류 분야, 그리고 한국 기업에서의 커리어 성장에 관심이 있습니다."],
-    skillsT: "역량", langT: "언어", techT: "기술 및 전문 역량",
-    langs: [["한국어","TOPIK 4급"],["베트남어","모국어"],["영어","[수준을 입력하세요]"]],
+    about: [
+      "저는 호찌민시 국가대학교 인문사회과학대학 한국학과 4학년으로, 한국 경제·정치·외교를 전공하고 있습니다.",
+      "한–베 IT 커뮤니케이터(IT Comtor) 직무, 물류 분야, 그리고 한국 기업에서의 커리어 성장에 관심이 있습니다."
+    ],
+    skillsT: "역량",
+    langT: "언어",
+    techT: "기술 및 전문 역량",
+    langs: [
+      ["한국어","TOPIK 4급"],
+      ["베트남어","모국어"],
+      ["영어","[수준을 입력하세요]"]
+    ],
     groups: [
-      {h:"IT 및 비즈니스 지식", i:["TOPCIT 2등급","IT 및 국제무역 기초 지식","비즈니스 커뮤니케이션"]},
-      {h:"사무 행정 및 문서 업무", i:["Microsoft Word, Excel, PowerPoint (MOS)","비즈니스 문서 작성 및 서식 편집","정보 취합 및 보고서 작성","회의록 및 행정 문서 작성","문서 정리, 파일링 및 기록 관리"]},
-      {h:"언어 및 커뮤니케이션", i:["통번역","한–베 커뮤니케이션"]},
-      {h:"AI 활용 웹 개발", i:["바이브 코딩: Claude 등 AI 도구를 활용해 자연어 프롬프트로 웹사이트 화면을 생성·수정·개선한 실습 경험.","포트폴리오 제작 실습을 통한 웹사이트 구조 및 프론트엔드 기초 이해."]}
+      {
+        h:"IT 및 비즈니스 지식",
+        i:[
+          "TOPCIT 2등급",
+          "IT 및 국제무역 기초 지식",
+          "비즈니스 커뮤니케이션"
+        ]
+      },
+      {
+        h:"사무 행정 및 문서 업무",
+        i:[
+          "Microsoft Word, Excel, PowerPoint (MOS)",
+          "비즈니스 문서 작성 및 서식 편집",
+          "정보 취합 및 보고서 작성",
+          "회의록 및 행정 문서 작성",
+          "문서 정리, 파일링 및 기록 관리"
+        ]
+      },
+      {
+        h:"언어 및 커뮤니케이션",
+        i:[
+          "통번역",
+          "한–베 커뮤니케이션"
+        ]
+      },
+      {
+        h:"AI 활용 웹 개발",
+        i:[
+          "바이브 코딩: Claude 등 AI 도구를 활용해 자연어 프롬프트로 웹사이트 화면을 생성·수정·개선한 실습 경험.",
+          "포트폴리오 제작 실습을 통한 웹사이트 구조 및 프론트엔드 기초 이해."
+        ]
+      }
     ],
-    expT: "경험 및 활동", ph: "[설명을 입력하세요]", img: "이미지 자리",
-    acts: ["Xuân Tình Nguyện 2026","“Em mơ …” [전체 제목 입력]","Thu San Sẻ – Trăng Đong Đầy","수어 동아리 활동","Nhà Nhiều Lá 인턴 프로젝트"],
-    projT: "프로젝트 및 교육", more: "자세히 보기",
+    expT: "경험 및 활동",
+    ph: "[설명을 입력하세요]",
+    img: "이미지 자리",
+    acts: [
+      "Xuân Tình Nguyện 2026",
+      "“Em mơ …” [전체 제목 입력]",
+      "Thu San Sẻ – Trăng Đong Đầy",
+      "수어 동아리 활동",
+      "Nhà Nhiều Lá 인턴 프로젝트"
+    ],
+    projT: "프로젝트 및 교육",
+    more: "자세히 보기",
     projs: [
-      {t:"KITS 2026",s:"한–베 IT 통역 교육",pts:["IT 기초 지식과 한–베 IT 용어를 학습했습니다.","IT 관련 상황에서 통번역을 실습했습니다.","비즈니스 커뮤니케이션, 문서 작성, 회의 관련 업무 실무 역량을 키웠습니다.","TOPCIT 2등급을 취득했습니다."]},
-      {t:"KITA 2026",s:"무역 실무 한국어",pts:["국제무역 관련 실무 한국어 용어를 학습했습니다.","비즈니스 서신 및 무역 문서 작성 역량을 키웠습니다.","수출입 절차와 무역 실무의 기초를 학습했습니다.","비즈니스·무역 상황에서 통번역을 실습했습니다."]}
+      {
+        t:"KITS 2026",
+        s:"한–베 IT 통역 교육",
+        pts:[
+          "IT 기초 지식과 한–베 IT 용어를 학습했습니다.",
+          "IT 관련 상황에서 통번역을 실습했습니다.",
+          "비즈니스 커뮤니케이션, 문서 작성, 회의 관련 업무 실무 역량을 키웠습니다.",
+          "TOPCIT 2등급을 취득했습니다."
+        ]
+      },
+      {
+        t:"KITA 2026",
+        s:"무역 실무 한국어",
+        pts:[
+          "국제무역 관련 실무 한국어 용어를 학습했습니다.",
+          "비즈니스 서신 및 무역 문서 작성 역량을 키웠습니다.",
+          "수출입 절차와 무역 실무의 기초를 학습했습니다.",
+          "비즈니스·무역 상황에서 통번역을 실습했습니다."
+        ]
+      }
     ],
-    dDesc: "개요", close: "닫기",
-    contactT: "연락처", cs: [["이메일","mhien0795work@gmail.com",LINKS.email,0],["LinkedIn","LinkedIn 프로필 보기",LINKS.linkedin,1],["CV","Canva에서 CV 보기",LINKS.cv,1]]
+    dDesc: "개요",
+    close: "닫기",
+    blogT: "블로그",
+    blogEmpty: "아직 게시된 글이 없습니다.",
+    blogBack: "블로그로 돌아가기",
+    contactT: "연락처",
+    cs:[
+      ["이메일","mhien0795work@gmail.com",LINKS.email,0],
+      ["LinkedIn","LinkedIn 프로필 보기",LINKS.linkedin,1],
+      ["CV","Canva에서 CV 보기",LINKS.cv,1]
+    ]
   }
 };
-const IDS = ["home","about","skills","activities","projects","contact"];
+  const IDS = ["home","about","skills","activities","projects","blog","contact"];
 
-/* ---------- Components (mỗi phần 1 thành phần nhỏ) ---------- */
+/* ---------- Các thành phần giao diện ---------- */
+
 const Nav = ({c, lang, setLang}) => html`
-  <nav><b style=${{fontFamily:"'Playfair Display',serif",fontSize:18}}>MTTH</b>
-    <div class="links">${IDS.map((id,i)=>html`<a key=${id} href=${"#"+id}>${c.nav[i]}</a>`)}</div>
-    <div class="lang">${["vi","en","ko"].map(l=>html`<button key=${l} class=${lang===l?"on":""} onClick=${()=>setLang(l)}>${l.toUpperCase()}</button>`)}</div>
-  </nav>`;
+  <nav>
+    <b style=${{fontFamily:"'Playfair Display',serif",fontSize:18}}>MTTH</b>
+    <div class="links">
+      ${IDS.map((id,i)=>html`
+        <a key=${id} href=${"#"+id}>${c.nav[i]}</a>
+      `)}
+    </div>
+    <div class="lang">
+      ${["vi","en","ko"].map(l=>html`
+        <button
+          key=${l}
+          class=${lang===l?"on":""}
+          onClick=${()=>setLang(l)}
+        >${l.toUpperCase()}</button>
+      `)}
+    </div>
+  </nav>
+`;
 
 const Hero = ({c}) => html`
-  <section id="home" class="hero"><div>
-    <div class="eyebrow">${c.hello}</div>
-    <h1>${NAME_LINES.map(l=>html`<span key=${l}>${l}</span>`)}</h1>
-    <p class="role">${c.role}</p>
-    ${c.intro.map((p,i)=>html`<p key=${i} class="intro">${p}</p>`)}
-    <div class="btns"><a class="btn fill" href="#projects">${c.b1}</a><a class="btn" href="#contact">${c.b2}</a></div>
-  </div><div class="photo">HT</div></section>`;
+  <section id="home" class="hero">
+    <div>
+      <div class="eyebrow">${c.hello}</div>
+      <h1>
+        ${NAME_LINES.map(l=>html`<span key=${l}>${l}</span>`)}
+      </h1>
+      <p class="role">${c.role}</p>
+      ${c.intro.map((p,i)=>html`
+        <p key=${i} class="intro">${p}</p>
+      `)}
+      <div class="btns">
+        <a class="btn fill" href="#projects">${c.b1}</a>
+        <a class="btn" href="#contact">${c.b2}</a>
+      </div>
+    </div>
+    <div class="photo">HT</div>
+  </section>
+`;
 
 const About = ({c}) => html`
-  <section id="about"><div class="cols"><div><div class="eyebrow">01</div><h2>${c.aboutT}</h2></div>
-  <div>${c.about.map((p,i)=>html`<p key=${i}>${p}</p>`)}</div></div></section>`;
+  <section id="about">
+    <div class="cols">
+      <div>
+        <div class="eyebrow">01</div>
+        <h2>${c.aboutT}</h2>
+      </div>
+      <div>
+        ${c.about.map((p,i)=>html`<p key=${i}>${p}</p>`)}
+      </div>
+    </div>
+  </section>
+`;
 
 const Skills = ({c}) => html`
-  <section id="skills"><div class="eyebrow">02</div><h2>${c.skillsT}</h2>
-  <div class="sk2">
-    <div class="blk"><h3>${c.langT}</h3>${c.langs.map(([a,b])=>html`<div class="row" key=${a}><span>${a}</span><span>${b}</span></div>`)}</div>
-    ${c.groups.map(g=>html`<div class="blk" key=${g.h}><h3>${g.h}</h3>${g.i.map(x=>html`<div class="li" key=${x}>${x}</div>`)}</div>`)}
-  </div></section>`;
+  <section id="skills">
+    <div class="eyebrow">02</div>
+    <h2>${c.skillsT}</h2>
+    <div class="sk2">
+      <div class="blk">
+        <h3>${c.langT}</h3>
+        ${c.langs.map(([a,b])=>html`
+          <div class="row" key=${a}>
+            <span>${a}</span>
+            <span>${b}</span>
+          </div>
+        `)}
+      </div>
+      ${c.groups.map(g=>html`
+        <div class="blk" key=${g.h}>
+          <h3>${g.h}</h3>
+          ${g.i.map(x=>html`
+            <div class="li" key=${x}>${x}</div>
+          `)}
+        </div>
+      `)}
+    </div>
+  </section>
+`;
 
 const Activities = ({c}) => html`
-  <section id="activities"><div class="eyebrow">03</div><h2>${c.expT}</h2>
-  <div class="grid">${c.acts.map(a=>html`<div class="card" key=${a}><div class="ph">${c.img}</div><div class="b"><h3>${a}</h3><p>${c.ph}</p></div></div>`)}</div></section>`;
+  <section id="activities">
+    <div class="eyebrow">03</div>
+    <h2>${c.expT}</h2>
+    <div class="grid">
+      ${c.acts.map(a=>html`
+        <div class="card" key=${a}>
+          <div class="ph">${c.img}</div>
+          <div class="b">
+            <h3>${a}</h3>
+            <p>${c.ph}</p>
+          </div>
+        </div>
+      `)}
+    </div>
+  </section>
+`;
 
 const Projects = ({c, open}) => html`
-  <section id="projects"><div class="eyebrow">04</div><h2>${c.projT}</h2>
-  <div class="grid">${c.projs.map((p,i)=>html`<button class="card" key=${i} onClick=${()=>open(i)}><div class="ph">${c.img}</div><div class="b"><h3>${p.t}</h3><p>${p.s}</p><p style=${{color:"var(--green)",marginTop:12}}>${c.more} →</p></div></button>`)}</div></section>`;
+  <section id="projects">
+    <div class="eyebrow">04</div>
+    <h2>${c.projT}</h2>
+    <div class="grid">
+      ${c.projs.map((p,i)=>html`
+        <button class="card" key=${i} onClick=${()=>open(i)}>
+          <div class="ph">${c.img}</div>
+          <div class="b">
+            <h3>${p.t}</h3>
+            <p>${p.s}</p>
+            <p style=${{color:"var(--green)",marginTop:12}}>
+              ${c.more} →
+            </p>
+          </div>
+        </button>
+      `)}
+    </div>
+  </section>
+`;
 
 const Detail = ({c, i, close}) => i===null ? null : html`
-  <div class="modal" onClick=${close}><div class="sheet" onClick=${e=>e.stopPropagation()}>
-    <h3>${c.projs[i].t}</h3><p>${c.projs[i].s}</p>
-    <div class="ph" style=${{margin:"20px 0 0"}}>${c.img}</div>
-    <h4>${c.dDesc}</h4>
-    <ul>${c.projs[i].pts.map(x=>html`<li key=${x}>${x}</li>`)}</ul>
-    <div class="btns"><button class="btn" onClick=${close}>${c.close}</button></div>
-  </div></div>`;
+  <div class="modal" onClick=${close}>
+    <div class="sheet" onClick=${e=>e.stopPropagation()}>
+      <h3>${c.projs[i].t}</h3>
+      <p>${c.projs[i].s}</p>
+      <div class="ph" style=${{margin:"20px 0 0"}}>${c.img}</div>
+      <h4>${c.dDesc}</h4>
+      <ul>
+        ${c.projs[i].pts.map(x=>html`<li key=${x}>${x}</li>`)}
+      </ul>
+      <div class="btns">
+        <button class="btn" onClick=${close}>${c.close}</button>
+      </div>
+    </div>
+  </div>
+`;
+
+/* ---------- Blog ---------- */
+
+const Blog = ({c, posts, loading, open}) => html`
+  <section id="blog">
+    <div class="eyebrow">05</div>
+    <h2>${c.blogT}</h2>
+
+    ${loading
+      ? html`<p class="blog-empty">Loading...</p>`
+      : posts.length === 0
+        ? html`<p class="blog-empty">${c.blogEmpty}</p>`
+        : html`
+          <div class="grid">
+            ${posts.map((post,i)=>html`
+              <button
+                class="card blog-card"
+                key=${post.slug || i}
+                onClick=${()=>open(post)}
+              >
+                ${post.thumbnail
+                  ? html`
+                    <img
+                      src=${post.thumbnail}
+                      alt=${post.title}
+                      loading="lazy"
+                    />
+                  `
+                  : html`<div class="ph">Blog</div>`
+                }
+
+                <div class="b">
+                  <p class="blog-date">${post.date || ""}</p>
+                  <h3>${post.title}</h3>
+                  <p>${post.description || ""}</p>
+                </div>
+              </button>
+            `)}
+          </div>
+        `
+    }
+  </section>
+`;
+
+const BlogDetail = ({post, close, c}) => {
+  if (!post) return null;
+
+  return html`
+    <div class="modal" onClick=${close}>
+      <article class="sheet" onClick=${e=>e.stopPropagation()}>
+        <p class="blog-date">${post.date || ""}</p>
+        <h3>${post.title}</h3>
+        <p>${post.description || ""}</p>
+
+        ${post.thumbnail
+          ? html`
+            <img
+              src=${post.thumbnail}
+              alt=${post.title}
+              style=${{width:"100%",marginTop:"20px"}}
+            />
+          `
+          : null
+        }
+
+        <div
+          class="blog-content"
+          dangerouslySetInnerHTML=${{__html: post.body || ""}}
+        ></div>
+
+        <div class="btns">
+          <button class="btn" onClick=${close}>
+            ${c.blogBack}
+          </button>
+        </div>
+      </article>
+    </div>
+  `;
+};
 
 const Contact = ({c}) => html`
-  <section id="contact"><div class="cols"><div><div class="eyebrow">05</div><h2>${c.contactT}</h2></div>
-  <div>${c.cs.map(([a,b,h,nt])=>html`<div class="row" key=${a}><span>${a}</span>
-    <a class="lnk" href=${h} target=${nt?"_blank":null} rel=${nt?"noopener noreferrer":null}>${b}</a></div>`)}</div></div></section>`;
+  <section id="contact">
+    <div class="cols">
+      <div>
+        <div class="eyebrow">06</div>
+        <h2>${c.contactT}</h2>
+      </div>
+      <div>
+        ${c.cs.map(([a,b,h,nt])=>html`
+          <div class="row" key=${a}>
+            <span>${a}</span>
+            <a
+              class="lnk"
+              href=${h}
+              target=${nt?"_blank":null}
+              rel=${nt?"noopener noreferrer":null}
+            >${b}</a>
+          </div>
+        `)}
+      </div>
+    </div>
+  </section>
+`;
+  /* ---------- Ứng dụng chính ---------- */
 
 function App(){
   const [lang,setLang] = useState("vi");
   const [proj,setProj] = useState(null);
+
+  const [posts,setPosts] = useState([]);
+  const [loading,setLoading] = useState(true);
+  const [selectedPost,setSelectedPost] = useState(null);
+
   const c = CONTENT[lang];
+
+  React.useEffect(() => {
+    fetch("/blog-index.json", {cache:"no-store"})
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Cannot load blog");
+        }
+        return response.json();
+      })
+      .then(data => {
+        setPosts(Array.isArray(data) ? data : []);
+      })
+      .catch(error => {
+        console.error("Blog loading error:", error);
+        setPosts([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   document.documentElement.lang = lang;
-  return html`<${Nav} c=${c} lang=${lang} setLang=${setLang}/>
-    <${Hero} c=${c}/><${About} c=${c}/><${Skills} c=${c}/><${Activities} c=${c}/>
-    <${Projects} c=${c} open=${setProj}/><${Contact} c=${c}/>
-    <footer>© 2026 ${NAME}</footer><${Detail} c=${c} i=${proj} close=${()=>setProj(null)}/>`;
+
+  return html`
+    <${Nav} c=${c} lang=${lang} setLang=${setLang}/>
+
+    <${Hero} c=${c}/>
+    <${About} c=${c}/>
+    <${Skills} c=${c}/>
+    <${Activities} c=${c}/>
+    <${Projects} c=${c} open=${setProj}/>
+
+    <${Blog}
+      c=${c}
+      posts=${posts}
+      loading=${loading}
+      open=${setSelectedPost}
+    />
+
+    <${Contact} c=${c}/>
+
+    <footer>© 2026 ${NAME}</footer>
+
+    <${Detail}
+      c=${c}
+      i=${proj}
+      close=${()=>setProj(null)}
+    />
+
+    <${BlogDetail}
+      post=${selectedPost}
+      close=${()=>setSelectedPost(null)}
+      c=${c}
+    />
+  `;
 }
-ReactDOM.createRoot(document.getElementById("root")).render(html`<${App}/>`);
+
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(html`<${App}/>`);
 </script>
 </body>
 </html>
