@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/generate-blog.js"
+    "build": "node scripts/generate-blog.js && node scripts/copy-to-dist.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
