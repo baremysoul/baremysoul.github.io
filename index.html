@@ -114,6 +114,7 @@ section{padding:110px 5vw;max-width:1240px;margin:0 auto}
 .sheet img{width:100%;border-radius:20px;margin:16px 0;display:block}
 .sheet ul{padding-left:20px;margin:0}.sheet li{margin-bottom:8px}
 .blog-content{margin-top:12px}.blog-content img{max-width:100%}
+.blog-content h1,.blog-content h2,.blog-content h3{font-size:clamp(20px,2.4vw,26px);margin:24px 0 8px;font-weight:500}.blog-content a{color:var(--green);text-underline-offset:3px}
 .project-links{display:flex;gap:18px;margin-top:22px}.project-links a{color:var(--green);font-weight:600;text-underline-offset:4px}
 
 /* CONTACT */
@@ -543,8 +544,7 @@ const ProjectDetail=({project,close,c,lang})=>{
         <h3>${t.title||""}</h3>
         ${t.subtitle?html`<p>${t.subtitle}</p>`:null}
         ${project.thumbnail?html`<img src=${project.thumbnail} alt=${t.title||""}/>`:null}
-        <h4>${c.details}</h4>
-        <ul>${(t.details||[]).map((item,i)=>html`<li key=${i}>${item}</li>`)}</ul>
+        ${t.body?html`<div class="blog-content" dangerouslySetInnerHTML=${{__html:t.body}}></div>`:((t.details||[]).length?html`<h4>${c.details}</h4><ul>${t.details.map((item,i)=>html`<li key=${i}>${item}</li>`)}</ul>`:null)}
         <div class="project-links">
           ${project.url?html`<a href=${project.url} target="_blank" rel="noopener noreferrer">${c.projectLink} ↗</a>`:null}
           ${project.github?html`<a href=${project.github} target="_blank" rel="noopener noreferrer">${c.githubLink} ↗</a>`:null}
