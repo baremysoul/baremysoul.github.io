@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: baremysoul/baremysoul.github.io
+  repo: baremysoul/baremysoul.github.io.
   branch: main
 
 media_folder: "images/uploads"
