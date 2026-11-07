@@ -1,26 +1,17 @@
 ---
-title_vi: "Hành chính văn phòng & Tài liệu"
-title_en: "Office Administration & Documentation"
-title_ko: "사무 행정 및 문서 관리"
-
+title_vi: Kỹ năng chuyên môn
+title_en: Professional Skills
+title_ko: 전문 역량
 items_vi:
-  - "Microsoft Word, Excel, PowerPoint (MOS)"
-  - "Soạn thảo tài liệu kinh doanh"
-  - "Tổng hợp thông tin và lập báo cáo"
-  - "Ghi biên bản họp và chuẩn bị tài liệu hành chính"
-  - "Sắp xếp, lưu trữ và quản lý hồ sơ"
-
+  - Biên dịch, phiên dịch Hàn – Việt
+  - Nghiệp vụ Tiếng Hàn thương mại & IT Business
+  - 'Vibe Coding: HTML, CSS, JavaScript, sử dụng GitHub, Claude và các công cụ AI hỗ trợ phát triển website.'
 items_en:
-  - "Microsoft Word, Excel, PowerPoint (MOS)"
-  - "Business document preparation"
-  - "Information summarization and report writing"
-  - "Meeting minutes and administrative documentation"
-  - "File organization, archiving and records management"
-
+  - Korean–Vietnamese Translation and Interpretation
+  - Business Korean & IT Business Operations
+  - 'Vibe Coding: HTML, CSS, JavaScript and using GitHub, Claude, and AI tools to support website development.'
 items_ko:
-  - "Microsoft Word, Excel, PowerPoint (MOS)"
-  - "비즈니스 문서 작성"
-  - "정보 정리 및 보고서 작성"
-  - "회의록 작성 및 사무 문서 준비"
-  - "문서 분류, 보관 및 자료 관리"
+  - 한-베트남어 번역 및 통역
+  - 비즈니스 한국어 및 IT 비즈니스 실무
+  - '바이브 코딩(Vibe Coding): HTML, CSS, JavaScript 활용 및 GitHub, Claude 등 AI 도구를 활용한 웹사이트 개발'
 ---
