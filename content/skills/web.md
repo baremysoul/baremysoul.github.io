@@ -1,20 +1,20 @@
 ---
-title_vi: "Phát triển web với AI hỗ trợ"
-title_en: "AI-Assisted Web Development"
-title_ko: "AI를 활용한 웹 개발"
-
+title_vi: KỸ NĂNG MỀM
+title_en: SOFT SKILLS
+title_ko: 소프트 스킬
 items_vi:
-  - "Hiểu cấu trúc cơ bản của một website"
-  - "Làm quen với HTML, CSS và JavaScript thông qua xây dựng portfolio"
-  - "Sử dụng công cụ AI để hỗ trợ viết và chỉnh sửa giao diện website"
-
+  - Lãnh đạo và điều phối nhóm
+  - Giao tiếp và phối hợp đa văn hóa
+  - Tỉ mỉ, chú trọng đến chi tiết
+  - Chủ động học hỏi và thích nghi với công nghệ mới
 items_en:
-  - "Understanding basic website structure"
-  - "Learning HTML, CSS and JavaScript through portfolio development"
-  - "Using AI tools to assist with website coding and interface editing"
-
+  - Leadership and Team Coordination
+  - Cross-cultural Communication and Collaboration
+  - Attention to Detail
+  - Proactive Learning and Adaptability to New Technologies
 items_ko:
-  - "웹사이트의 기본 구조 이해"
-  - "포트폴리오 제작을 통한 HTML, CSS 및 JavaScript 기초 학습"
-  - "AI 도구를 활용한 웹사이트 코드 작성 및 화면 수정"
+  - 리더십 및 팀 조율 능력
+  - 다문화 커뮤니케이션 및 협업 능력
+  - 꼼꼼함과 세부 사항에 대한 주의력
+  - 주도적인 학습 태도 및 신기술 적응력
 ---
