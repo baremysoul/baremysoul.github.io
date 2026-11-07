@@ -9,24 +9,27 @@ language_vi:
   - Tiếng Việt – Bản ngữ
   - Tiếng Hàn – TOPIK cấp 4
   - Tiếng Anh – B2 in Progress
+  - 'Chứng chỉ MOS: Excel, Word, PowerPoint'
 language_en:
   - Vietnamese – Native
   - Korean – TOPIK Level 4
   - English – B2 in Progress
+  - 'MOS Certification: Excel, Word, and PowerPoint'
 language_ko:
   - 베트남어 – 모국어
   - 한국어 – TOPIK 4급
   - 영어 – B2 준비 중
+  - 'MOS 자격증: Excel, Word, PowerPoint'
 it_vi:
   - TOPCIT cấp 2
-  - Kiến thức cơ bản về IT và thương mại quốc tế
-  - Giao tiếp trong kinh doanh
+  - Kiến thức về nghiệp vụ thương mại quốc tế
+  - Kiến thức cơ bản về IT & IT Business
 it_en:
   - TOPCIT Level 2
-  - Basic knowledge of IT and international trade
-  - Business communication
+  - Knowledge of International Trade Operations
+  - Basic Knowledge of IT & IT Business
 it_ko:
-  - TOPCIT 2등급
-  - IT 및 국제무역 기초 지식
-  - 비즈니스 커뮤니케이션
+  - TOPCIT 2급
+  - 국제무역 실무 지식
+  - IT 및 IT 비즈니스 기초 지식
 ---
