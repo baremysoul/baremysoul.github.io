@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: nnga48031-lab/My-portfolio
+  repo: nnga48031-lab/nnga48031-lab.github.io
   branch: main
 
 media_folder: "images/uploads"
