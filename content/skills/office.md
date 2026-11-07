@@ -1,5 +1,5 @@
 ---
-title_vi: Kỹ năng chuyên môn
+title_vi: KỸ NĂNG CHUYÊN MÔN
 title_en: Professional Skills
 title_ko: 전문 역량
 items_vi:
