@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
@@ -6,6 +5,27 @@ const { marked } = require("marked");
 const sanitizeHtml = require("sanitize-html");
 
 const root = path.join(__dirname, "..");
+
+// CHO PHÉP ẢNH TRONG BÀI VIẾT (mặc định sanitize-html sẽ xoá thẻ <img>)
+const sanitizeOptions = {
+  allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+  allowedAttributes: {
+    ...sanitizeHtml.defaults.allowedAttributes,
+    a: ["href", "name", "target", "rel"],
+    img: ["src", "alt", "title", "width", "height", "loading"]
+  },
+  transformTags: {
+    a: sanitizeHtml.simpleTransform("a", {
+      target: "_blank",
+      rel: "noopener noreferrer"
+    })
+  }
+};
+
+function renderMarkdown(text) {
+  if (!text || !String(text).trim()) return "";
+  return sanitizeHtml(marked.parse(String(text)), sanitizeOptions);
+}
 
 // ĐỌC CÁC FILE MARKDOWN TRONG COLLECTION
 function readCollection(folderName) {
@@ -23,19 +43,14 @@ function readCollection(folderName) {
       return {
         ...data,
         slug: path.parse(file).name,
-        body: sanitizeHtml(marked.parse(content))
+        body: renderMarkdown(content)
       };
     });
 }
 
 // ĐỌC FILE HỌC VẤN CỐ ĐỊNH
 function readEducation() {
-  const filePath = path.join(
-    root,
-    "content",
-    "education",
-    "education.md"
-  );
+  const filePath = path.join(root, "content", "education", "education.md");
 
   if (!fs.existsSync(filePath)) return {};
 
@@ -58,94 +73,100 @@ function getList(value) {
     .filter(Boolean);
 }
 
-// SẮP XẾP BÀI VIẾT THEO NGÀY MỚI NHẤT
+// SẮP XẾP THEO NGÀY MỚI NHẤT
 function sortByDate(items) {
   return items.sort(
     (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
   );
 }
 
+// ĐỊNH DẠNG NGÀY: 07/11/2026
+function formatDate(value) {
+  if (!value) return "";
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return String(value);
+  return d.toLocaleDateString("en-GB", { timeZone: "Asia/Ho_Chi_Minh" });
+}
+
+function withFormattedDate(items) {
+  return items.map(item => ({ ...item, date: formatDate(item.date) }));
+}
+
 // 1. BLOG
-const blogPosts = sortByDate(
-  readCollection("blog")
-    .filter(post => post.title)
-    .map(post => ({
-      title: post.title || "",
-      date: post.date || "",
-      description: post.description || "",
-      thumbnail: post.thumbnail || "",
-      slug: post.slug,
-      body: post.body || ""
-    }))
+const blogPosts = withFormattedDate(
+  sortByDate(
+    readCollection("blog")
+      .filter(post => post.title)
+      .map(post => ({
+        title: post.title || "",
+        date: post.date || "",
+        description: post.description || "",
+        thumbnail: post.thumbnail || "",
+        slug: post.slug,
+        body: post.body || ""
+      }))
+  )
 );
 
 // 2. ACTIVITIES
-const activities = sortByDate(
-  readCollection("activities")
-    .filter(item => item.title)
-    .map(item => ({
-      title: item.title || "",
-      date: item.date || "",
-      description: item.description || "",
-      thumbnail: item.thumbnail || "",
-      slug: item.slug,
-      body: item.body || ""
+const activities = withFormattedDate(
+  sortByDate(
+    readCollection("activities")
+      .filter(item => item.title)
+      .map(item => ({
+        title: item.title || "",
+        date: item.date || "",
+        description: item.description || "",
+        thumbnail: item.thumbnail || "",
+        slug: item.slug,
+        body: item.body || ""
+      }))
+  )
+);
+
+// 3. PROJECTS (tiếng Anh/Hàn bỏ trống sẽ tự dùng bản tiếng Việt)
+function buildProjectLang(project, lang) {
+  const vi = lang === "vi";
+  const pick = key => project[key + "_" + lang] || (vi ? "" : project[key + "_vi"]) || "";
+  const detailsOwn = getList(project["details_" + lang]);
+  const detailsVi = getList(project.details_vi);
+
+  return {
+    title: pick("title") || project.title_en || project.title_ko || "",
+    subtitle: pick("subtitle"),
+    body: renderMarkdown(pick("body")),
+    details: detailsOwn.length ? detailsOwn : (vi ? [] : detailsVi)
+  };
+}
+
+const projects = sortByDate(
+  readCollection("projects")
+    .filter(project => project.title_vi || project.title_en || project.title_ko)
+    .map(project => ({
+      slug: project.slug,
+      date: project.date || "",
+      thumbnail: project.thumbnail || "",
+      url: project.url || "",
+      github: project.github || "",
+      vi: buildProjectLang(project, "vi"),
+      en: buildProjectLang(project, "en"),
+      ko: buildProjectLang(project, "ko")
     }))
 );
 
-// 3. PROJECTS
-const projects = readCollection("projects")
-  .filter(project =>
-    project.title_vi || project.title_en || project.title_ko
-  )
-  .map(project => ({
-    slug: project.slug,
-    thumbnail: project.thumbnail || "",
-    url: project.url || "",
-    github: project.github || "",
-
-    vi: {
-      title: project.title_vi || "",
-      subtitle: project.subtitle_vi || "",
-      details: getList(project.details_vi)
-    },
-
-    en: {
-      title: project.title_en || "",
-      subtitle: project.subtitle_en || "",
-      details: getList(project.details_en)
-    },
-
-    ko: {
-      title: project.title_ko || "",
-      subtitle: project.subtitle_ko || "",
-      details: getList(project.details_ko)
-    }
-  }));
-
-// 4. SKILLS
+// 4. SKILLS (bỏ trống bản dịch sẽ dùng tiếng Việt)
 const skills = readCollection("skills")
-  .filter(skill =>
-    skill.title_vi || skill.title_en || skill.title_ko
-  )
-  .map(skill => ({
-    slug: skill.slug,
-
-    vi: {
-      title: skill.title_vi || "",
-      items: getList(skill.items_vi)
-    },
-
-    en: {
-      title: skill.title_en || "",
-      items: getList(skill.items_en)
-    },
-
-    ko: {
-      title: skill.title_ko || "",
-      items: getList(skill.items_ko)
-    }
-  }));
+  .filter(skill => skill.title_vi || skill.title_en || skill.title_ko)
+  .map(skill => {
+    const build = lang => {
+      const items = getList(skill["items_" + lang]);
+      return {
+        title: skill["title_" + lang] || skill.title_vi || "",
+        items: items.length ? items : getList(skill.items_vi)
+      };
+    };
+    return { slug: skill.slug, vi: build("vi"), en: build("en"), ko: build("ko") };
+  });
 
 // 5. EDUCATION
 const educationData = readEducation();
@@ -157,14 +178,12 @@ const education = {
     language: getList(educationData.language_vi),
     it: getList(educationData.it_vi)
   },
-
   en: {
     school: educationData.school_en || "",
     major: educationData.major_en || "",
     language: getList(educationData.language_en),
     it: getList(educationData.it_en)
   },
-
   ko: {
     school: educationData.school_ko || "",
     major: educationData.major_ko || "",
