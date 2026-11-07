@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: nnga48031-lab/nnga48031-lab.github.io
+  repo: baremysoul/baremysoul.github.io
   branch: main
 
 media_folder: "images/uploads"
