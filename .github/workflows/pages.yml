@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -23,6 +23,25 @@ jobs:
         with:
           node-version: 20
       - run: npm install
+
+      # Tự dịch các ô tiếng Anh / tiếng Hàn còn trống (cần secret ANTHROPIC_API_KEY)
+      - name: Auto-translate content
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/translate.js
+
+      # Lưu bản dịch về lại repo để bạn thấy và sửa được trong trang quản trị
+      - name: Commit translations
+        run: |
+          if [ -n "$(git status --porcelain content)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add content
+            git commit -m "Auto-translate content to EN/KO"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
