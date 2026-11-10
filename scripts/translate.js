@@ -1,4 +1,4 @@
-// TỰ DỊCH nội dung tiếng Việt sang tiếng Anh và tiếng Hàn bằng Claude API.
+// TỰ DỊCH nội dung tiếng Việt sang tiếng Anh và tiếng Hàn bằng Google Gemini API (có gói miễn phí).
 //
 // Cách hoạt động:
 //  - Quét các file trong content/ (blog, activities, projects, skills, education).
@@ -13,7 +13,12 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.join(__dirname, "..");
-const MODEL = process.env.TRANSLATE_MODEL || "claude-haiku-5-5";
+// Thử lần lượt các model; model nào hết hạn mức hoặc không tồn tại thì chuyển sang model kế tiếp.
+// Muốn ép dùng một model cụ thể: đặt biến GEMINI_MODEL.
+const MODELS = process.env.GEMINI_MODEL
+  ? [process.env.GEMINI_MODEL]
+  : ["gemini-2.5-flash", "gemini-2.5-flash-lite"];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 const FOLDERS = ["blog", "activities", "projects", "skills", "education"];
 const LANGS = { en: "English", ko: "Korean" };
 
@@ -43,7 +48,7 @@ function collectJobs(data, lang) {
   return jobs;
 }
 
-// Kiểm tra kết quả Claude trả về có đúng cấu trúc không
+// Kiểm tra kết quả AI trả về có đúng cấu trúc không
 function validate(jobs, result) {
   if (!result || typeof result !== "object") return false;
   return Object.keys(jobs).every(k => {
@@ -76,7 +81,7 @@ async function processData(data, translateFn) {
   return { changed, data: out };
 }
 
-async function callClaude(jobs, langCode, apiKey) {
+async function callGemini(jobs, langCode, apiKey) {
   const language = LANGS[langCode];
   const system = [
     `You translate content for the personal portfolio website of a Vietnamese student of Korean Studies.`,
@@ -91,41 +96,51 @@ async function callClaude(jobs, langCode, apiKey) {
   ].join("\n");
 
   let lastErr;
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          "x-api-key": apiKey,
-          "anthropic-version": "2023-06-01"
-        },
-        body: JSON.stringify({
-          model: MODEL,
-          max_tokens: 8000,
-          system,
-          messages: [{ role: "user", content: JSON.stringify(jobs) }]
-        })
-      });
+  for (const model of MODELS) {
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+          {
+            method: "POST",
+            headers: { "content-type": "application/json", "x-goog-api-key": apiKey },
+            body: JSON.stringify({
+              systemInstruction: { parts: [{ text: system }] },
+              contents: [{ role: "user", parts: [{ text: JSON.stringify(jobs) }] }],
+              generationConfig: {
+                responseMimeType: "application/json",
+                temperature: 0.2,
+                maxOutputTokens: 16000
+              }
+            })
+          }
+        );
 
-      if (res.status === 429 || res.status >= 500) throw new Error(`HTTP ${res.status}`);
-      if (!res.ok) {
-        // Lỗi không thử lại được (sai key, sai model...)
-        const text = await res.text();
-        console.warn(`  ! Claude API trả về ${res.status}: ${text.slice(0, 200)}`);
-        return null;
+        if (res.status === 429 || res.status >= 500) throw new Error(`HTTP ${res.status} (${model})`);
+        if (res.status === 401 || res.status === 403) {
+          const text = await res.text();
+          console.warn(`  ! Gemini từ chối (${res.status}), kiểm tra lại GEMINI_API_KEY: ${text.slice(0, 200)}`);
+          return null;
+        }
+        if (!res.ok) {
+          // Ví dụ 400/404: tên model không dùng được -> thử model kế tiếp
+          lastErr = new Error(`HTTP ${res.status} (${model}): ${(await res.text()).slice(0, 200)}`);
+          break;
+        }
+
+        const json = await res.json();
+        const cand = json.candidates && json.candidates[0];
+        if (!cand) throw new Error("Phản hồi trống (có thể bị chặn nội dung)");
+        if (cand.finishReason === "MAX_TOKENS") throw new Error("Bài quá dài, bị cắt giữa chừng");
+        const text = ((cand.content && cand.content.parts) || []).map(p => p.text || "").join("");
+        const start = text.indexOf("{");
+        const end = text.lastIndexOf("}");
+        if (start < 0 || end < 0) throw new Error("Không có JSON trong phản hồi");
+        return JSON.parse(text.slice(start, end + 1));
+      } catch (err) {
+        lastErr = err;
+        await sleep(5000 * attempt); // hạn mức miễn phí tính theo phút, chờ rồi thử lại
       }
-
-      const json = await res.json();
-      if (json.stop_reason === "max_tokens") throw new Error("Bài quá dài, bị cắt giữa chừng");
-      const text = (json.content || []).map(b => b.text || "").join("");
-      const start = text.indexOf("{");
-      const end = text.lastIndexOf("}");
-      if (start < 0 || end < 0) throw new Error("Không có JSON trong phản hồi");
-      return JSON.parse(text.slice(start, end + 1));
-    } catch (err) {
-      lastErr = err;
-      await new Promise(r => setTimeout(r, 1500 * attempt));
     }
   }
   console.warn(`  ! Dịch sang ${langCode} thất bại: ${lastErr && lastErr.message}`);
@@ -133,9 +148,9 @@ async function callClaude(jobs, langCode, apiKey) {
 }
 
 async function main() {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    console.log("Chưa có ANTHROPIC_API_KEY, bỏ qua bước tự dịch.");
+    console.log("Chưa có GEMINI_API_KEY, bỏ qua bước tự dịch.");
     return;
   }
 
@@ -156,7 +171,7 @@ async function main() {
         const parsed = matter(fs.readFileSync(file, "utf8"));
         const { changed, data } = await processData(parsed.data, (jobs, lang) => {
           console.log(`Dịch ${folder}/${name} -> ${lang}: ${Object.keys(jobs).join(", ")}`);
-          return callClaude(jobs, lang, apiKey);
+          return callGemini(jobs, lang, apiKey).then(async r => { await sleep(3000); return r; });
         });
 
         if (changed) {
@@ -177,4 +192,4 @@ if (require.main === module) {
   main().catch(err => console.warn("Tự dịch gặp lỗi:", err.message));
 }
 
-module.exports = { collectJobs, validate, processData, callClaude };
+module.exports = { collectJobs, validate, processData, callGemini };
