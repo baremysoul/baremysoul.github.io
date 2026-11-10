@@ -24,10 +24,10 @@ jobs:
           node-version: 20
       - run: npm install
 
-      # Tự dịch các ô tiếng Anh / tiếng Hàn còn trống (cần secret ANTHROPIC_API_KEY)
+      # Tự dịch các ô tiếng Anh / tiếng Hàn còn trống (cần secret GEMINI_API_KEY)
       - name: Auto-translate content
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/translate.js
 
       # Lưu bản dịch về lại repo để bạn thấy và sửa được trong trang quản trị
