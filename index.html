@@ -510,39 +510,54 @@ const Education=({c,data,skills,lang})=>{
   `;
 };
 
-const ArticleDetail=({item,close,c})=>{
+// Lấy nội dung theo ngôn ngữ; nếu thiếu thì dự phòng sang tiếng Việt, rồi sang dữ liệu cũ (không chia ngôn ngữ)
+const pick=(item,lang)=>{
+  const t=(item&&item[lang])||{};
+  const v=(item&&item.vi)||{};
+  const o=item||{};
+  return {
+    title:t.title||v.title||o.title||"",
+    description:t.description||t.subtitle||v.description||v.subtitle||o.description||"",
+    body:t.body||v.body||o.body||""
+  };
+};
+
+const ArticleDetail=({item,close,c,lang})=>{
   if(!item)return null;
+  const t=pick(item,lang);
   return html`
     <div class="modal" onClick=${close}>
       <article class="sheet" onClick=${e=>e.stopPropagation()}>
         <p class="blog-date">${item.date||""}</p>
-        <h3>${item.title||""}</h3>
-        ${item.description?html`<p>${item.description}</p>`:null}
-        ${item.thumbnail?html`<img src=${item.thumbnail} alt=${item.title||""}/>`:null}
-        <div class="blog-content" dangerouslySetInnerHTML=${{__html:item.body||"<p></p>"}}></div>
+        <h3>${t.title}</h3>
+        ${t.description?html`<p>${t.description}</p>`:null}
+        ${item.thumbnail?html`<img src=${item.thumbnail} alt=${t.title}/>`:null}
+        <div class="blog-content" dangerouslySetInnerHTML=${{__html:t.body||"<p></p>"}}></div>
         <div class="btns"><button class="btn" onClick=${close}>${c.blogBack}</button></div>
       </article>
     </div>
   `;
 };
 
-const ArticleSection=({id,title,items,loading,empty,open,more})=>html`
+const ArticleSection=({id,title,items,loading,empty,open,more,lang})=>html`
   <section id=${id}>
     <div class="sh rv"><h2>${title}</h2></div>
     ${loading?html`<p class="blog-empty">Loading...</p>`:
       items.length===0?html`<p class="blog-empty rv">${empty}</p>`:html`
         <div class="grid">
-          ${items.map((item,i)=>html`
+          ${items.map((item,i)=>{
+            const t=pick(item,lang);
+            return html`
             <button class="card rv" key=${item.slug||i} onClick=${()=>open(item)}>
-              <span class="im">${item.thumbnail?html`<img src=${item.thumbnail} alt=${item.title||""} loading="lazy"/>`:html`<div class="ph">${title}</div>`}</span>
+              <span class="im">${item.thumbnail?html`<img src=${item.thumbnail} alt=${t.title} loading="lazy"/>`:html`<div class="ph">${title}</div>`}</span>
               <div class="b">
                 <p class="blog-date">${item.date||""}</p>
-                <h3>${item.title||"Untitled"}</h3>
-                ${item.description?html`<p>${item.description}</p>`:null}
+                <h3>${t.title||"Untitled"}</h3>
+                ${t.description?html`<p>${t.description}</p>`:null}
                 <p class="article-read">${more} →</p>
               </div>
             </button>
-          `)}
+          `;})}
         </div>
       `}
   </section>
@@ -592,8 +607,8 @@ const ProjectDetail=({project,close,c,lang})=>{
   `;
 };
 
-const Blog=({c,posts,loading,open})=>html`
-  <${ArticleSection} id="blog" title=${c.blogT} items=${posts} loading=${loading} empty=${c.blogEmpty} open=${open} more=${c.articleMore}/>
+const Blog=({c,posts,loading,open,lang})=>html`
+  <${ArticleSection} id="blog" title=${c.blogT} items=${posts} loading=${loading} empty=${c.blogEmpty} open=${open} more=${c.articleMore} lang=${lang}/>
 `;
 
 const Contact=({c})=>html`
@@ -690,14 +705,14 @@ function App(){
     <${ArticleSection}
       id="activities" title=${c.expT}
       items=${activities} loading=${activitiesLoading}
-      empty=${c.activityEmpty} open=${setSelectedArticle} more=${c.articleMore}
+      empty=${c.activityEmpty} open=${setSelectedArticle} more=${c.articleMore} lang=${lang}
     />
     <${Projects} c=${c} items=${projectPosts} loading=${projectsLoading} open=${setSelectedProject} lang=${lang}/>
-    <${Blog} c=${c} posts=${posts} loading=${loading} open=${setSelectedPost}/>
+    <${Blog} c=${c} posts=${posts} loading=${loading} open=${setSelectedPost} lang=${lang}/>
     <${Contact} c=${c}/>
     <footer>© 2026 ${NAME}</footer>
-    <${ArticleDetail} item=${selectedArticle} close=${()=>setSelectedArticle(null)} c=${c}/>
-    <${ArticleDetail} item=${selectedPost} close=${()=>setSelectedPost(null)} c=${c}/>
+    <${ArticleDetail} item=${selectedArticle} close=${()=>setSelectedArticle(null)} c=${c} lang=${lang}/>
+    <${ArticleDetail} item=${selectedPost} close=${()=>setSelectedPost(null)} c=${c} lang=${lang}/>
     <${ProjectDetail} project=${selectedProject} close=${()=>setSelectedProject(null)} c=${c} lang=${lang}/>
   `;
 }
