@@ -92,37 +92,41 @@ function withFormattedDate(items) {
   return items.map(item => ({ ...item, date: formatDate(item.date) }));
 }
 
+// BÀI VIẾT & HOẠT ĐỘNG: 3 ngôn ngữ. Ô tiếng Anh/Hàn bỏ trống sẽ dùng tiếng Việt.
+// Vẫn đọc được bài cũ chỉ có title / description / nội dung (chưa chia ngôn ngữ).
+function buildArticleLang(item, lang) {
+  const pick = key => item[key + "_" + lang] || item[key + "_vi"] || item[key] || "";
+  const bodyMd = item["body_" + lang] || item.body_vi;
+
+  return {
+    title: pick("title"),
+    description: pick("description"),
+    body: bodyMd ? renderMarkdown(bodyMd) : (item.body || "")
+  };
+}
+
+function buildArticles(folderName) {
+  return withFormattedDate(
+    sortByDate(
+      readCollection(folderName)
+        .filter(item => item.title_vi || item.title_en || item.title_ko || item.title)
+        .map(item => ({
+          slug: item.slug,
+          date: item.date || "",
+          thumbnail: item.thumbnail || "",
+          vi: buildArticleLang(item, "vi"),
+          en: buildArticleLang(item, "en"),
+          ko: buildArticleLang(item, "ko")
+        }))
+    )
+  );
+}
+
 // 1. BLOG
-const blogPosts = withFormattedDate(
-  sortByDate(
-    readCollection("blog")
-      .filter(post => post.title)
-      .map(post => ({
-        title: post.title || "",
-        date: post.date || "",
-        description: post.description || "",
-        thumbnail: post.thumbnail || "",
-        slug: post.slug,
-        body: post.body || ""
-      }))
-  )
-);
+const blogPosts = buildArticles("blog");
 
 // 2. ACTIVITIES
-const activities = withFormattedDate(
-  sortByDate(
-    readCollection("activities")
-      .filter(item => item.title)
-      .map(item => ({
-        title: item.title || "",
-        date: item.date || "",
-        description: item.description || "",
-        thumbnail: item.thumbnail || "",
-        slug: item.slug,
-        body: item.body || ""
-      }))
-  )
-);
+const activities = buildArticles("activities");
 
 // 3. PROJECTS (tiếng Anh/Hàn bỏ trống sẽ tự dùng bản tiếng Việt)
 function buildProjectLang(project, lang) {
